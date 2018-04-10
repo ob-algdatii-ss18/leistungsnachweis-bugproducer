@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.9)
-project(Bugproducer_AlgDatII)
+cmake_minimum_required(VERSION 3.9.2)
+project(leistungsnachweis_bugproducer)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Bugproducer_AlgDatII main.cpp)
+add_executable(leistungsnachweis_bugproducer main.cpp)
