@@ -3,4 +3,4 @@ project(leistungsnachweis_bugproducer)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(leistungsnachweis_bugproducer main.cpp)
+add_executable(leistungsnachweis_bugproducer main.cpp HidatoGenerator.cpp HidatoGenerator.h)
