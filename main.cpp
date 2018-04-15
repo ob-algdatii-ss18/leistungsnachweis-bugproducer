@@ -6,7 +6,7 @@ int main() {
 
     vector<vector<int>> result;
     auto *gen = new HidatoGenerator();
-    result = gen->generateField();
+    result = gen->generateField(4);
 
 
     for(int i=0; i<4; i++){

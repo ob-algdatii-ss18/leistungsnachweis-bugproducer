@@ -7,16 +7,16 @@
 
 #include <vector>
 
-
 class HidatoGenerator {
 public:
-    std::vector<std::vector<int>> generateField();
+    std::vector<std::vector<int>> generateField(unsigned int);
 
 private:
     std::vector<std::vector<int>> playGround;
-
-
-
+    void setStartPoint();
+    unsigned int fieldSize;
+    int currentPosition;
+    std::vector<int> getNeighboursCount();
 };
 
 
