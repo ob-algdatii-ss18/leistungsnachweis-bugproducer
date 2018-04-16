@@ -16,6 +16,7 @@ public:
     unsigned int getSize();
 
     std::vector<std::vector<int>> getPlayGround();
+    std::vector<int> getNeighbours();
 
 private:
     std::vector<std::vector<int>> playGround;
@@ -26,7 +27,7 @@ private:
     int currentPosition;
     int isRandom;
 
-    std::vector<int> getNeighboursCount();
+
 
     void right(std::vector<int> &neighbours) const;
 

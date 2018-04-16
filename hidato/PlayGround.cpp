@@ -28,10 +28,10 @@ void PlayGround::generateField() {
 
     setStartPoint();
 
-
-    for (unsigned int i = 0; i < getNeighboursCount().size(); i++) {
-        cout << getNeighboursCount().at(i) << "\n";
-    }
+/*
+    for (unsigned int i = 0; i < getNeighbours().size(); i++) {
+        cout << getNeighbours().at(i) << "\n";
+    }*/
 }
 
 void PlayGround::setStartPoint() {
@@ -48,7 +48,7 @@ void PlayGround::setStartPoint() {
     playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = 1;
 }
 
-vector<int> PlayGround::getNeighboursCount() {
+vector<int> PlayGround::getNeighbours() {
 
     vector<int> neighbours;
 

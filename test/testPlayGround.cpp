@@ -7,14 +7,13 @@
 using namespace std;
 
 TEST(PlayGroundTest, Test_Generate) {
-    auto *gen = new PlayGround(4, -1);
+    vector<int> expectedNeigbours = {1,4,5};
+    auto *gen = new PlayGround(4, 0);
     gen->generateField();
-
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            cout << gen->getPlayGround()[i][j] << "  ";
-        }
-        cout << endl;
+    vector<int> haveNeighbouts = gen->getNeighbours();
+    ASSERT_EQ(expectedNeigbours.size(),haveNeighbouts.size());
+    for(int i = 0; i<expectedNeigbours.size();i++){
+        ASSERT_EQ(expectedNeigbours[i],haveNeighbouts[i]);
     }
 
 }
