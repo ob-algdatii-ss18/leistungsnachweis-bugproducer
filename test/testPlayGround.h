@@ -7,9 +7,9 @@
 
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-#include "hidato/HidatoGenerator.h"
+#include "hidato/PlayGround.h"
 
-class testHidatoGenerator : public ::testing::Test {
+class testPlayGround : public ::testing::Test {
 
 };
 

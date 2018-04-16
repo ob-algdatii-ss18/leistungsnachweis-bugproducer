@@ -2,13 +2,13 @@
 // Created by mark on 16.04.2018.
 //
 
-#include "testHidatoGenerator.h"
+#include "testPlayGround.h"
 
 using namespace std;
 
-TEST(HidatoGeneratorTest, Test_Generate){
+TEST(PlayGroundTest, Test_Generate){
 vector<vector<int>> result;
-    auto *gen = new HidatoGenerator();
+    auto *gen = new PlayGround();
     result = gen->generateField(5);
 
 

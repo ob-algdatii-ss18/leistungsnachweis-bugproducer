@@ -7,13 +7,13 @@ int main(int argc, char **argv) {
 
 
 //#include <iostream>
-//#include "../hidato/HidatoGenerator.h"
+//#include "../hidato/PlayGround.h"
 //using namespace std;
 //
 //int main() {
 //
 //    vector<vector<int>> result;
-//    auto *gen = new HidatoGenerator();
+//    auto *gen = new PlayGround();
 //    result = gen->generateField(5);
 //
 //

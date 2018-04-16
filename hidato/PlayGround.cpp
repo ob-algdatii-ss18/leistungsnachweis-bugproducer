@@ -1,4 +1,4 @@
-#include "HidatoGenerator.h"
+#include "PlayGround.h"
 #include <vector>
 #include <cstdlib>
 #include <iostream>
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-vector<vector<int>> HidatoGenerator::generateField(unsigned int fieldSize) {
+vector<vector<int>> PlayGround::generateField(unsigned int fieldSize) {
     this->fieldSize = fieldSize;
 
     playGround = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
@@ -29,7 +29,7 @@ vector<vector<int>> HidatoGenerator::generateField(unsigned int fieldSize) {
     return playGround;
 }
 
-void HidatoGenerator::setStartPoint() {
+void PlayGround::setStartPoint() {
 
     srand((int) time(0));
 
@@ -42,7 +42,7 @@ void HidatoGenerator::setStartPoint() {
     playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = 1;
 }
 
-vector<int> HidatoGenerator::getNeighboursCount() {
+vector<int> PlayGround::getNeighboursCount() {
 
     vector<int> neighbours;
 
@@ -124,50 +124,50 @@ vector<int> HidatoGenerator::getNeighboursCount() {
     return neighbours;
 }
 
-void HidatoGenerator::bottomLeft(vector<int> &neighbours) const {
+void PlayGround::bottomLeft(vector<int> &neighbours) const {
     if (playGround.at((currentPosition - fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
                 neighbours.push_back(currentPosition - fieldSize - 1);
             }
 }
 
-void HidatoGenerator::bottomRight(vector<int> &neighbours) const {
+void PlayGround::bottomRight(vector<int> &neighbours) const {
     if (playGround.at((currentPosition - fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
                 neighbours.push_back(currentPosition - fieldSize + 1);
             }
 }
 
-void HidatoGenerator::bottom(vector<int> &neighbours) const {
+void PlayGround::bottom(vector<int> &neighbours) const {
     if (playGround.at((currentPosition - fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
                 neighbours.push_back(currentPosition - fieldSize);
             }
 }
 
-void HidatoGenerator::topLeft(vector<int> &neighbours) const {
+void PlayGround::topLeft(vector<int> &neighbours) const {
     if (playGround.at((currentPosition + fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
                 neighbours.push_back(currentPosition + fieldSize - 1);
             }
 }
 
-void HidatoGenerator::left(vector<int> &neighbours) const {
+void PlayGround::left(vector<int> &neighbours) const {
     if (playGround.at(currentPosition / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
                 neighbours.push_back(currentPosition - 1);
             }
 }
 
-void HidatoGenerator::topRight(vector<int> &neighbours) const {
+void PlayGround::topRight(vector<int> &neighbours) const {
     if (playGround.at((currentPosition + fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) ==
         0) {
                 neighbours.push_back(currentPosition + fieldSize + 1);
             }
 }
 
-void HidatoGenerator::top(vector<int> &neighbours) const {
+void PlayGround::top(vector<int> &neighbours) const {
     if (playGround.at((currentPosition + fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
                 neighbours.push_back(currentPosition + fieldSize);
             }
 }
 
-void HidatoGenerator::right(vector<int> &neighbours) const {
+void PlayGround::right(vector<int> &neighbours) const {
     if (playGround.at(currentPosition / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
                 neighbours.push_back(currentPosition + 1);
             }

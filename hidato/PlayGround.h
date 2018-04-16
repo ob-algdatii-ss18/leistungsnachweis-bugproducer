@@ -7,8 +7,9 @@
 
 #include <vector>
 
-class HidatoGenerator {
+class PlayGround {
 public:
+
     std::vector<std::vector<int>> generateField(unsigned int);
 
 private:

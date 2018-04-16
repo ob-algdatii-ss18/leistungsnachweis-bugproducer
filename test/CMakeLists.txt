@@ -5,13 +5,13 @@ if (APPLE)
     add_definitions(-D__GLIBCXX__)
 endif (APPLE)
 
-add_executable(testHidatoGenerator ${SRCS} ../hidato/HidatoGenerator.h ../hidato/HidatoGenerator.cpp)
+add_executable(testPlayGround ${SRCS} ../hidato/PlayGround.h ../hidato/PlayGround.cpp)
 
-target_link_libraries(testHidatoGenerator
+target_link_libraries(testPlayGround
         gtest
         gmock
         )
 
 include_directories("..")
 
-install(TARGETS testHidatoGenerator DESTINATION bin)
+install(TARGETS testPlayGround DESTINATION bin)
