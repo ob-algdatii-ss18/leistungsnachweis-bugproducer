@@ -17,6 +17,22 @@ private:
     unsigned int fieldSize;
     int currentPosition;
     std::vector<int> getNeighboursCount();
+
+    void right(std::vector<int> &neighbours) const;
+
+    void top(std::vector<int> &neighbours) const;
+
+    void topRight(std::vector<int> &neighbours) const;
+
+    void left(std::vector<int> &neighbours) const;
+
+    void topLeft(std::vector<int> &neighbours) const;
+
+    void bottom(std::vector<int> &neighbours) const;
+
+    void bottomRight(std::vector<int> &neighbours) const;
+
+    void bottomLeft(std::vector<int> &neighbours) const;
 };
 
 
