@@ -8,7 +8,7 @@ script:
   - cmake -H. -Bbuild
   - cd build
   - cmake -DCOVERAGE=1 .
-  - cmake --build -DCOVERAGE=1 .
+  - cmake --build
   - ctest
 
 after_success:
