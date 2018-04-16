@@ -34,4 +34,4 @@ add_subdirectory(test)
 
 enable_testing()
 
-add_test(testList test/testHidatoGenerator --gtest_output=xml:report.xml)
+add_test(testList test/testPlayGround --gtest_output=xml:report.xml)
