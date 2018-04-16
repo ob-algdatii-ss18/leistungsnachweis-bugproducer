@@ -5,9 +5,10 @@ before_install:
     - pip install --user cpp-coveralls
 
 script:
-  - cmake -H. -Bbuild -DCOVERAGE=1
+  - cmake -H. -Bbuild
   - cd build
-  - cmake --build .
+  - cmake -DCOVERAGE=1 .
+  - cmake --build -DCOVERAGE=1 .
   - ctest
 
 after_success:
