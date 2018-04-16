@@ -9,14 +9,23 @@
 
 class PlayGround {
 public:
+    PlayGround(unsigned int, int);
 
-    std::vector<std::vector<int>> generateField(unsigned int);
+    void generateField();
+
+    unsigned int getSize();
+
+    std::vector<std::vector<int>> getPlayGround();
 
 private:
     std::vector<std::vector<int>> playGround;
+
     void setStartPoint();
+
     unsigned int fieldSize;
     int currentPosition;
+    int isRandom;
+
     std::vector<int> getNeighboursCount();
 
     void right(std::vector<int> &neighbours) const;

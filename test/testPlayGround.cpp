@@ -6,16 +6,15 @@
 
 using namespace std;
 
-TEST(PlayGroundTest, Test_Generate){
-vector<vector<int>> result;
-    auto *gen = new PlayGround();
-    result = gen->generateField(5);
+TEST(PlayGroundTest, Test_Generate) {
+    auto *gen = new PlayGround(4, -1);
+    gen->generateField();
 
-
-    for(int i=0; i<5; i++){
-        for(int j=0; j<5; j++){
-            cout << result[i][j]<< "  ";
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            cout << gen->getPlayGround()[i][j] << "  ";
         }
-            cout << endl;
+        cout << endl;
     }
+
 }
