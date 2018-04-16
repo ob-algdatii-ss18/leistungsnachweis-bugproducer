@@ -1,10 +1,13 @@
-#include <iostream>
-#include "HidatoGenerator.h"
+//
+// Created by mark on 16.04.2018.
+//
+
+#include "testHidatoGenerator.h"
+
 using namespace std;
 
-int main() {
-
-    vector<vector<int>> result;
+TEST(HidatoGeneratorTest, Test_Generate){
+vector<vector<int>> result;
     auto *gen = new HidatoGenerator();
     result = gen->generateField(5);
 
@@ -15,7 +18,4 @@ int main() {
         }
             cout << endl;
     }
-
-
-    return 0;
 }
