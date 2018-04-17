@@ -10,6 +10,7 @@ using namespace std;
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
     this->fieldSize = fieldSize;
     this->isRandom = isRandom;
+    this->runCounter = 1;
 
 }
 
@@ -28,7 +29,7 @@ void PlayGround::generateField() {
     }
 
     setStartPoint();
-    calcNeighbours();
+
 
 /*
     for (unsigned int i = 0; i < getNeighbours().size(); i++) {
@@ -50,6 +51,7 @@ void PlayGround::setStartPoint() {
     }
 
     playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = fieldCounter++;
+    calcNeighbours();
 }
 
 vector<int> PlayGround::calcNeighbours() {
@@ -193,7 +195,8 @@ std::vector<std::vector<int>> PlayGround::getPlayGround() {
 }
 
 void PlayGround::fillPlayGround() {
-    int nextPosition;
+    int nextPosition = 0;
+    float densityCounter = 0;
 
     while (getNeighbours().size() != 0) {
         nextPosition = (rand() % (getNeighbours().size()));
@@ -202,17 +205,17 @@ void PlayGround::fillPlayGround() {
             playGround[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
             currentPosition = nextPosition;
             calcNeighbours();
+            densityCounter++;
         }
 
     }
-    if(!checkDensity()){
-        for(int i=0; i < fieldSize; i++ ){
-            for(int j=0; j < fieldSize; j++ ){
-               playGround[i][j]=0;
+    if (densityCounter / (float) (fieldSize * fieldSize) < 0.01f) {
+        for (int i = 0; i < fieldSize; i++) {
+            for (int j = 0; j < fieldSize; j++) {
+                playGround[i][j] = 0;
             }
-
         }
-
+        cout << runCounter++ << endl;
         setStartPoint();
         fillPlayGround();
     }
@@ -226,21 +229,10 @@ void PlayGround::printPlayGround() {
         }
         cout << endl;
     }
+    cout << runCounter;
 
 
 }
 
-bool PlayGround::checkDensity() {
-    float densityCounter=0;
-    for (int i = 0; i < fieldSize; i++) {
-        for (int j = 0; j < fieldSize; j++) {
-            if(playGround[i][j]!=0){
-                densityCounter++;
-            }
-        }
-    }
-    return densityCounter / (float)(fieldSize * fieldSize) >= 0.9f;
-
-}
 
 

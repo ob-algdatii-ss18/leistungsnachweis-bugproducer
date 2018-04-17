@@ -14,6 +14,7 @@ public:
     void generateField();
 
     unsigned int getSize();
+    int runCounter;
 
     std::vector<std::vector<int>> getPlayGround();
     std::vector<int> calcNeighbours();
@@ -28,6 +29,7 @@ private:
     void setStartPoint();
 
     std::vector<int> neighbours;
+
 
     unsigned int fieldSize;
     int currentPosition;
