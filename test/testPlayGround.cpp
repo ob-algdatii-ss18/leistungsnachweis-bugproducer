@@ -6,28 +6,50 @@
 
 using namespace std;
 
-TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopRightPositionWithEmptyPlayGround) {
-    vector<int> expectedNeigbours = {1,4,5};
+TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopLeftPositionWithEmptyPlayGround) {
+    vector<int> expectedNeighbours = {1,4,5};
     auto *gen = new PlayGround(4, 0);
     gen->generateField();
     vector<int> haveNeighbours = gen->getNeighbours();
-    ASSERT_EQ(expectedNeigbours.size(),haveNeighbours.size());
-    for(int i = 0; i<expectedNeigbours.size();i++){
-        ASSERT_EQ(expectedNeigbours[i],haveNeighbours[i]);
+    ASSERT_EQ(expectedNeighbours.size(),haveNeighbours.size());
+    for(int i = 0; i<expectedNeighbours.size();i++){
+        ASSERT_EQ(expectedNeighbours[i],haveNeighbours[i]);
     }
 }
 
-
-TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopLeftPosstionWithEmptyPlayGround) {
-    vector<int> expectedNeigbours = {2,6,7};
+TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopRightPostionWithEmptyPlayGround) {
+    vector<int> expectedNeighbours = {2,6,7};
     auto *gen = new PlayGround(4, 3);
     gen->generateField();
     vector<int> haveNeighbours = gen->getNeighbours();
-    ASSERT_EQ(expectedNeigbours.size(),haveNeighbours.size());
-    for(int i = 0; i<expectedNeigbours.size();i++){
-        ASSERT_EQ(expectedNeigbours[i],haveNeighbours[i]);
+    ASSERT_EQ(expectedNeighbours.size(),haveNeighbours.size());
+    for(int i = 0; i<expectedNeighbours.size();i++){
+        ASSERT_EQ(expectedNeighbours[i],haveNeighbours[i]);
+    }
+
+}
+TEST(PlayGroundTest, shouldReturnThreeNeigboursOnBottomLeftPostionWithEmptyPlayGround) {
+    vector<int> expectedNeighbours = {8,9,13};
+    auto *gen = new PlayGround(4, 12);
+    gen->generateField();
+    vector<int> haveNeighbours = gen->getNeighbours();
+    ASSERT_EQ(expectedNeighbours.size(),haveNeighbours.size());
+    for(int i = 0; i<expectedNeighbours.size();i++){
+        ASSERT_EQ(expectedNeighbours[i],haveNeighbours[i]);
     }
 }
+
+TEST(PlayGroundTest, shouldReturnThreeNeigboursOnBottomRightPostionWithEmptyPlayGround) {
+    vector<int> expectedNeighbours = {10, 11, 14};
+    auto *gen = new PlayGround(4, 15);
+    gen->generateField();
+    vector<int> haveNeighbours = gen->getNeighbours();
+    ASSERT_EQ(expectedNeighbours.size(), haveNeighbours.size());
+    for (int i = 0; i < expectedNeighbours.size(); i++) {
+        ASSERT_EQ(expectedNeighbours[i], haveNeighbours[i]);
+    }
+}
+
 
 TEST(PlayGroundTest, shouldReturnFiveNeigboursOnTopMiddlePostionWithEmptyPlayGround) {
     vector<int> expectedNeigbours = {0,2,4,5,6};
@@ -59,6 +81,17 @@ TEST(PlayGroundTest, shouldReturnFiveNeigboursOnMiddleRightPostionWithEmptyPlayG
     ASSERT_EQ(expectedNeigbours.size(),haveNeighbours.size());
     for(int i = 0; i<expectedNeigbours.size();i++){
         ASSERT_EQ(expectedNeigbours[i],haveNeighbours[i]);
+    }
+}
+
+TEST(PlayGroundTest, shouldReturnEightNeigboursOnMiddleMiddlePostionWithEmptyPlayGround) {
+    vector<int> expectedNeighbours = {0, 1, 2, 4, 6, 8, 9, 10};
+    auto *gen = new PlayGround(4, 5);
+    gen->generateField();
+    vector<int> haveNeighbours = gen->getNeighbours();
+    ASSERT_EQ(expectedNeighbours.size(), haveNeighbours.size());
+    for (int i = 0; i < expectedNeighbours.size(); i++) {
+        ASSERT_EQ(expectedNeighbours[i], haveNeighbours[i]);
     }
 }
 
