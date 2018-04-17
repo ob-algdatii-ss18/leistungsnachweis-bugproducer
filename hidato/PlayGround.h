@@ -16,16 +16,23 @@ public:
     unsigned int getSize();
 
     std::vector<std::vector<int>> getPlayGround();
-    std::vector<int> getNeighbours();
+    std::vector<int> calcNeighbours();
+
+    const std::vector<int> &getNeighbours() const;
+    void fillPlayGround();
+    void printPlayGround();
 
 private:
     std::vector<std::vector<int>> playGround;
 
     void setStartPoint();
 
+    std::vector<int> neighbours;
+
     unsigned int fieldSize;
     int currentPosition;
     int isRandom;
+    int fieldCounter;
 
 
 
@@ -44,6 +51,9 @@ private:
     void hasTopRightNeighbour(std::vector<int> &neighbours) const;
 
     void hasTopLeftNeighbour(std::vector<int> &neighbours) const;
+
+
+    bool checkDensity();
 };
 
 

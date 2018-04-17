@@ -10,6 +10,7 @@ using namespace std;
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
     this->fieldSize = fieldSize;
     this->isRandom = isRandom;
+
 }
 
 unsigned int PlayGround::getSize() {
@@ -27,14 +28,17 @@ void PlayGround::generateField() {
     }
 
     setStartPoint();
+    calcNeighbours();
 
 /*
     for (unsigned int i = 0; i < getNeighbours().size(); i++) {
-        cout << getNeighbours().at(i) << "\n";
+        cout << calcNeighbours().at(i) << "\n";
     }*/
 }
 
 void PlayGround::setStartPoint() {
+
+    fieldCounter = 1;
 
     srand((unsigned int) time(0));
 
@@ -45,12 +49,13 @@ void PlayGround::setStartPoint() {
         currentPosition = isRandom;
     }
 
-    playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = 1;
+    playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = fieldCounter++;
 }
 
-vector<int> PlayGround::getNeighbours() {
+vector<int> PlayGround::calcNeighbours() {
 
-    vector<int> neighbours;
+    neighbours.clear();
+
 
     playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize);
 
@@ -130,6 +135,10 @@ vector<int> PlayGround::getNeighbours() {
     return neighbours;
 }
 
+const vector<int> &PlayGround::getNeighbours() const {
+    return neighbours;
+}
+
 void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours) const {
     if (playGround.at((currentPosition - fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
         neighbours.push_back(currentPosition - fieldSize - 1);
@@ -181,6 +190,57 @@ void PlayGround::hasRightNeighbour(vector<int> &neighbours) const {
 
 std::vector<std::vector<int>> PlayGround::getPlayGround() {
     return playGround;
+}
+
+void PlayGround::fillPlayGround() {
+    int nextPosition;
+
+    while (getNeighbours().size() != 0) {
+        nextPosition = (rand() % (getNeighbours().size()));
+        nextPosition = getNeighbours()[nextPosition];
+        if (playGround[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
+            playGround[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
+            currentPosition = nextPosition;
+            calcNeighbours();
+        }
+
+    }
+    if(!checkDensity()){
+        for(int i=0; i < fieldSize; i++ ){
+            for(int j=0; j < fieldSize; j++ ){
+               playGround[i][j]=0;
+            }
+
+        }
+
+        setStartPoint();
+        fillPlayGround();
+    }
+
+}
+
+void PlayGround::printPlayGround() {
+    for (int i = 0; i < fieldSize; i++) {
+        for (int j = 0; j < fieldSize; j++) {
+            cout << playGround[i][j] << "  ";
+        }
+        cout << endl;
+    }
+
+
+}
+
+bool PlayGround::checkDensity() {
+    float densityCounter=0;
+    for (int i = 0; i < fieldSize; i++) {
+        for (int j = 0; j < fieldSize; j++) {
+            if(playGround[i][j]!=0){
+                densityCounter++;
+            }
+        }
+    }
+    return densityCounter / (float)(fieldSize * fieldSize) >= 0.9f;
+
 }
 
 
