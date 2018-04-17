@@ -17,3 +17,16 @@ TEST(PlayGroundTest, Test_Generate) {
     }
 
 }
+
+
+TEST(PlayGroundTest, shouldReturnThreeNeigboursOnPositionThreeWithEmptyField) {
+    vector<int> expectedNeigbours = {2,6,7};
+    auto *gen = new PlayGround(4, 3);
+    gen->generateField();
+    vector<int> haveNeighbouts = gen->getNeighbours();
+    ASSERT_EQ(expectedNeigbours.size(),haveNeighbouts.size());
+    for(int i = 0; i<expectedNeigbours.size();i++){
+        ASSERT_EQ(expectedNeigbours[i],haveNeighbouts[i]);
+    }
+
+}

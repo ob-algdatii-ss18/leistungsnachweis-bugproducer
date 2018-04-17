@@ -29,21 +29,21 @@ private:
 
 
 
-    void right(std::vector<int> &neighbours) const;
+    void hasRightNeighbour(std::vector<int> &neighbours) const;
 
-    void top(std::vector<int> &neighbours) const;
+    void hasBottomNeighbour(std::vector<int> &neighbours) const;
 
-    void topRight(std::vector<int> &neighbours) const;
+    void hasBottomRightNeighbour(std::vector<int> &neighbours) const;
 
-    void left(std::vector<int> &neighbours) const;
+    void hasLeftNeighbour(std::vector<int> &neighbours) const;
 
-    void topLeft(std::vector<int> &neighbours) const;
+    void hasBottomLeftNeighbour(std::vector<int> &neighbours) const;
 
-    void bottom(std::vector<int> &neighbours) const;
+    void hasTopNeighbour(std::vector<int> &neighbours) const;
 
-    void bottomRight(std::vector<int> &neighbours) const;
+    void hasTopRightNeighbour(std::vector<int> &neighbours) const;
 
-    void bottomLeft(std::vector<int> &neighbours) const;
+    void hasTopLeftNeighbour(std::vector<int> &neighbours) const;
 };
 
 
