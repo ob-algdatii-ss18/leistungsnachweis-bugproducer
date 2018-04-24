@@ -25,11 +25,11 @@ unsigned int PlayGround::getSize() {
 
 void PlayGround::generateField() {
 
-    playGround = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
+    playGroundSolved = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
 
     for (unsigned int i = 0; i < fieldSize; i++) {
 
-        vector<int> d = playGround.at(i);
+        vector<int> d = playGroundSolved.at(i);
         fill(d.begin(), d.end(), 0);
     }
 
@@ -55,7 +55,7 @@ void PlayGround::setStartPoint() {
         currentPosition = isRandom;
     }
 
-    playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = fieldCounter++;
+    playGroundSolved.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = fieldCounter++;
     calcNeighbours();
 }
 
@@ -64,7 +64,7 @@ vector<int> PlayGround::calcNeighbours() {
     neighbours.clear();
 
 
-    playGround.at(currentPosition / fieldSize).at(currentPosition % fieldSize);
+    playGroundSolved.at(currentPosition / fieldSize).at(currentPosition % fieldSize);
 
     // keine Nachbarn darüber, erste Zeile
     if (currentPosition < fieldSize) {
@@ -147,56 +147,56 @@ const vector<int> &PlayGround::getNeighbours() const {
 }
 
 void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours) const {
-    if (playGround.at((currentPosition - fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
+    if (playGroundSolved.at((currentPosition - fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
         neighbours.push_back(currentPosition - fieldSize - 1);
     }
 }
 
 void PlayGround::hasTopRightNeighbour(vector<int> &neighbours) const {
-    if (playGround.at((currentPosition - fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
+    if (playGroundSolved.at((currentPosition - fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
         neighbours.push_back(currentPosition - fieldSize + 1);
     }
 }
 
 void PlayGround::hasTopNeighbour(vector<int> &neighbours) const {
-    if (playGround.at((currentPosition - fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
+    if (playGroundSolved.at((currentPosition - fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
         neighbours.push_back(currentPosition - fieldSize);
     }
 }
 
 void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours) const {
-    if (playGround.at((currentPosition + fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
+    if (playGroundSolved.at((currentPosition + fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
         neighbours.push_back(currentPosition + fieldSize - 1);
     }
 }
 
 void PlayGround::hasLeftNeighbour(vector<int> &neighbours) const {
-    if (playGround.at(currentPosition / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
+    if (playGroundSolved.at(currentPosition / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
         neighbours.push_back(currentPosition - 1);
     }
 }
 
 void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours) const {
-    if (playGround.at((currentPosition + fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) ==
+    if (playGroundSolved.at((currentPosition + fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) ==
         0) {
         neighbours.push_back(currentPosition + fieldSize + 1);
     }
 }
 
 void PlayGround::hasBottomNeighbour(vector<int> &neighbours) const {
-    if (playGround.at((currentPosition + fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
+    if (playGroundSolved.at((currentPosition + fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
         neighbours.push_back(currentPosition + fieldSize);
     }
 }
 
 void PlayGround::hasRightNeighbour(vector<int> &neighbours) const {
-    if (playGround.at(currentPosition / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
+    if (playGroundSolved.at(currentPosition / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
         neighbours.push_back(currentPosition + 1);
     }
 }
 
 std::vector<std::vector<int>> PlayGround::getPlayGround() {
-    return playGround;
+    return playGroundSolved;
 }
 
 void PlayGround::fillPlayGround() {
@@ -207,21 +207,21 @@ void PlayGround::fillPlayGround() {
         auto random_integer = uni(rng);
         nextPosition = random_integer % getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
-        if (playGround[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
-            playGround[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
+        if (playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
+            playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
             currentPosition = nextPosition;
             calcNeighbours();
             densityCounter++;
         }
 
     }
-    if (densityCounter / (float) (fieldSize * fieldSize) < 0.01f) {
+    if (densityCounter / (float) (fieldSize * fieldSize) < 0.9f) {
         for (int i = 0; i < fieldSize; i++) {
             for (int j = 0; j < fieldSize; j++) {
-                playGround[i][j] = 0;
+                playGroundSolved[i][j] = 0;
             }
         }
-        cout << runCounter++ << endl;
+       runCounter++;
         setStartPoint();
         fillPlayGround();
     }
@@ -231,12 +231,30 @@ void PlayGround::fillPlayGround() {
 void PlayGround::printPlayGround() {
     for (int i = 0; i < fieldSize; i++) {
         for (int j = 0; j < fieldSize; j++) {
-            cout << playGround[i][j] << "  ";
+            cout << playGroundSolved[i][j] << "  ";
         }
         cout << endl;
     }
     cout << runCounter;
 
+
+}
+
+void PlayGround::generateUnsolvedPlayground() {
+
+    playGroundUnsolved = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
+    for (int i = 0; i < fieldSize; i++) {
+        for (int j = 0; j < fieldSize; j++) {
+            //remove numbers
+            if(playGroundSolved[i][j] != 1 || playGroundSolved[i][j] != currentPosition){
+
+            }
+
+
+
+        }
+        cout << endl;
+    }
 
 }
 

@@ -22,9 +22,12 @@ public:
     const std::vector<int> &getNeighbours() const;
     void fillPlayGround();
     void printPlayGround();
+    void generateUnsolvedPlayground();
 
 private:
-    std::vector<std::vector<int>> playGround;
+    std::vector<std::vector<int>> playGroundSolved;
+    std::vector<std::vector<int>> playGroundUnsolved;
+
 
     void setStartPoint();
 
@@ -53,7 +56,6 @@ private:
     void hasTopRightNeighbour(std::vector<int> &neighbours) const;
 
     void hasTopLeftNeighbour(std::vector<int> &neighbours) const;
-
 
     bool checkDensity();
 };
