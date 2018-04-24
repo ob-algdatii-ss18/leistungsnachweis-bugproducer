@@ -7,6 +7,11 @@
 
 using namespace std;
 
+std::random_device rd;     // only used once to initialise (seed) engine
+std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
+std::uniform_int_distribution<int> uni(1,99); // guaranteed unbiased
+
+
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
     this->fieldSize = fieldSize;
     this->isRandom = isRandom;
@@ -199,7 +204,8 @@ void PlayGround::fillPlayGround() {
     float densityCounter = 0;
 
     while (getNeighbours().size() != 0) {
-        nextPosition = (rand() % (getNeighbours().size()));
+        auto random_integer = uni(rng);
+        nextPosition = random_integer % getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
         if (playGround[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
             playGround[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
