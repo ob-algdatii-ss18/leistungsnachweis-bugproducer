@@ -26,7 +26,6 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopRightPostionWithEmptyPlayGro
     for (int i = 0; i < expectedNeighbours.size(); i++) {
         ASSERT_EQ(expectedNeighbours[i], haveNeighbours[i]);
     }
-
 }
 
 TEST(PlayGroundTest, shouldReturnThreeNeigboursOnBottomLeftPostionWithEmptyPlayGround) {
@@ -109,10 +108,13 @@ TEST(PlayGroundTest, shouldReturnFiveNeigboursOnMiddleLeftPostionWithEmptyPlayGr
 
 TEST(PlayGroundTest, test) {
 
-    auto *gen = new PlayGround(8, -1);
-    gen->generateField();
-    gen->fillPlayGround();
-    gen->printPlayGround();
+    for(int i = 0; i < 100; i++) {
+        cout << "\n" << endl;
+        auto *gen = new PlayGround(5, -1);
+        gen->generateField();
+        gen->fillPlayGround();
+        gen->printPlayGround();
 
+    }
 
 }
