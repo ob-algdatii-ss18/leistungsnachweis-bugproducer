@@ -32,6 +32,7 @@ private:
     void setStartPoint();
 
     std::vector<int> neighbours;
+    std::vector<int> numberAddresses;
 
 
     unsigned int fieldSize;

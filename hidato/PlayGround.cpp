@@ -45,6 +45,8 @@ void PlayGround::generateField() {
 void PlayGround::setStartPoint() {
 
     fieldCounter = 1;
+    numberAddresses = vector<int>();
+
 
     srand((unsigned int) time(0));
 
@@ -56,6 +58,7 @@ void PlayGround::setStartPoint() {
     }
 
     playGroundSolved.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = fieldCounter++;
+    numberAddresses.push_back(currentPosition);
     calcNeighbours();
 }
 
@@ -210,6 +213,7 @@ void PlayGround::fillPlayGround() {
         if (playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
             playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
             currentPosition = nextPosition;
+            numberAddresses.push_back(currentPosition);
             calcNeighbours();
             densityCounter++;
         }
@@ -235,7 +239,13 @@ void PlayGround::printPlayGround() {
         }
         cout << endl;
     }
-    cout << runCounter;
+    for (int i = 0; i < numberAddresses.size(); i++) {
+
+        cout << numberAddresses[i] << " ";
+
+
+    }
+    cout << endl <<"Anzahl der Durchlaeufe: " <<runCounter;
 
 
 }
