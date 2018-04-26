@@ -17,14 +17,15 @@ public:
     int runCounter;
 
     std::vector<std::vector<int>> getPlayGround();
-    std::vector<int> calcNeighbours();
+    std::vector<int> calcNeighbours(int);
 
     const std::vector<int> &getNeighbours() const;
     void fillPlayGround();
-    void printPlayGround();
+    void printPlayGrounds();
     void generateUnsolvedPlayground();
 
 private:
+
     std::vector<std::vector<int>> playGroundSolved;
     std::vector<std::vector<int>> playGroundUnsolved;
 
@@ -40,23 +41,25 @@ private:
     int isRandom;
     int fieldCounter;
 
+    std::vector<int> checkForSameNeighbours(int, int);
 
 
-    void hasRightNeighbour(std::vector<int> &neighbours) const;
 
-    void hasBottomNeighbour(std::vector<int> &neighbours) const;
+    void hasRightNeighbour(std::vector<int> &neighbours, int) const;
 
-    void hasBottomRightNeighbour(std::vector<int> &neighbours) const;
+    void hasBottomNeighbour(std::vector<int> &neighbours, int) const;
 
-    void hasLeftNeighbour(std::vector<int> &neighbours) const;
+    void hasBottomRightNeighbour(std::vector<int> &neighbours, int) const;
 
-    void hasBottomLeftNeighbour(std::vector<int> &neighbours) const;
+    void hasLeftNeighbour(std::vector<int> &neighbours, int) const;
 
-    void hasTopNeighbour(std::vector<int> &neighbours) const;
+    void hasBottomLeftNeighbour(std::vector<int> &neighbours, int) const;
 
-    void hasTopRightNeighbour(std::vector<int> &neighbours) const;
+    void hasTopNeighbour(std::vector<int> &neighbours, int) const;
 
-    void hasTopLeftNeighbour(std::vector<int> &neighbours) const;
+    void hasTopRightNeighbour(std::vector<int> &neighbours, int) const;
+
+    void hasTopLeftNeighbour(std::vector<int> &neighbours, int) const;
 
     bool checkDensity();
 };
