@@ -41,7 +41,7 @@ private:
     int isRandom;
     int fieldCounter;
 
-    std::vector<int> checkForSameNeighbours(int, int);
+    bool checkForSameNeighbours(int, int);
 
 
 

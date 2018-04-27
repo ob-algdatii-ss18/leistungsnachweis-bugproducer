@@ -297,43 +297,73 @@ void PlayGround::generateUnsolvedPlayground() {
 
     playGroundUnsolved = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
     int saveLastPosition = currentPosition;
-    int deleteMarker = 3;
-
-    // test values
-    // todo remove
-    vector<int> test = checkForSameNeighbours(numberAddresses[0], numberAddresses[1]);
+    int deleteMarker = 9;
 
     playGroundUnsolved[numberAddresses[0] / fieldSize][numberAddresses[0] % fieldSize] = 1;
-    playGroundUnsolved[numberAddresses[numberAddresses.size() - 1] / fieldSize][
-            numberAddresses[numberAddresses.size() - 1] % fieldSize] = numberAddresses.size();
-    for (int i = 1; i * deleteMarker < numberAddresses.size() - 1; i++) {
-        int tempMarker = i*deleteMarker;
-        int tempPos = numberAddresses[tempMarker];
-        int temp = playGroundSolved[tempPos/fieldSize][tempPos%fieldSize];
-        playGroundUnsolved[tempPos/fieldSize][tempPos%fieldSize] = temp;
+    playGroundUnsolved[numberAddresses[numberAddresses.size() - 1] / fieldSize][numberAddresses[numberAddresses.size() - 1] % fieldSize] = numberAddresses.size();
 
+    for (int i = 1; i * deleteMarker < numberAddresses.size() - 1; i++) {
+        int tempMarker = i * deleteMarker;
+        int tempPos = numberAddresses[tempMarker];
+        int temp = playGroundSolved[tempPos / fieldSize][tempPos % fieldSize];
+        playGroundUnsolved[tempPos / fieldSize][tempPos % fieldSize] = temp;
+
+    }
+//
+//    for (int i = 0; i < fieldSize; i++) {
+//        for (int j = 0; j < fieldSize; j++) {
+//            cout << playGroundSolved[i][j] << "  ";
+//        }
+//        cout << endl;
+//    }
+//    cout << "\n\n\n" << endl;
+
+    for (int i = 0; i < numberAddresses.size() - 2; i++) {
+        if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2])) {
+            if (playGroundUnsolved[numberAddresses[i + 2] / fieldSize][numberAddresses[i + 2] % fieldSize] == 0) {
+                int temp = playGroundSolved[numberAddresses[i + 2] / fieldSize][numberAddresses[i + 2] % fieldSize];
+                playGroundUnsolved[numberAddresses[i + 2] / fieldSize][numberAddresses[i + 2] % fieldSize] = temp;
+
+            } else {
+                int temp = playGroundSolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize];
+                playGroundUnsolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize] = temp;
+            }
+            i++;
+        }
+
+//        for (int i = 0; i < fieldSize; i++) {
+//            for (int j = 0; j < fieldSize; j++) {
+//                cout << playGroundUnsolved[i][j] << "  ";
+//            }
+//            cout << endl;
+//        }
+//
+//        cout << "\n\n\n" << endl;
+    }
+
+    for (int i = 0; i < fieldSize; i++) {
+        for (int j = 0; j < fieldSize; j++) {
+            if (playGroundSolved[i][j] == 0) {
+                playGroundUnsolved[i][j] = -1;
+            }
+        }
     }
 
     printPlayGrounds();
 
 }
 
-vector<int> PlayGround::checkForSameNeighbours(int addr1, int addr2) {
+bool PlayGround::checkForSameNeighbours(int addr1, int addr2) {
 
     currentPosition = addr1;
     vector<int> one = calcNeighbours(1);
-    currentPosition = addr2;
-    vector<int> two = calcNeighbours(1);
-    vector<int> intersection;
 
-    for (int i = 0; i < one.size(); i++) {
-        for (int j = 0; j < two.size(); j++) {
-            if (one[i] == two[j]) {
-                intersection.push_back(one[i]);
-            }
-        }
+    for (int elem : one) {
+        if (elem == addr2)
+            return true;
     }
-    return intersection;
+    return false;
+
 }
 
 
