@@ -11,10 +11,10 @@ before_script:
   - cd ..
 
 script:
-
-          - cd build
-          - cmake --build .
-          - ctest .
+  - cmake -H. -Bbuild -DCOVERAGE=1
+  - cd build
+  - cmake --build .
+  - ctest
 
 after_success:
-  - coveralls --exclude build/CMakeFiles/ --exclude build/gtest/ --gcov "llvm-cov gcov" --gcov-options '\-lp'
+  - coveralls --exclude build --exclude test --root .. -E ".*external.*" -E ".*CMakeFiles.*"
