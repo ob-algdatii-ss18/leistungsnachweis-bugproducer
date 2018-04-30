@@ -10,7 +10,8 @@ before_install:
     - pip install --user cpp-coveralls
 
 before_script:
-  - ./configure --enable-gcov
+  - cd hidato
+  - gcov PlayGround.cpp
 
 script:
   - cmake -H. -Bbuild
