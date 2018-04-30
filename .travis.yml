@@ -6,6 +6,7 @@ before_install:
 
 script:
   - cmake -DCOVERAGE=1 .
+  - mkdir build
   - cd build
   - cmake --build .
   - ./test
