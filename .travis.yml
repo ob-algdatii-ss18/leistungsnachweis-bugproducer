@@ -9,6 +9,9 @@ addons:
 before_install:
     - pip install --user cpp-coveralls
 
+before_script:
+  - ./configure --enable-gcov
+
 script:
   - cmake -H. -Bbuild
   - cd build
@@ -16,4 +19,4 @@ script:
   - ctest
 
 after_success:
-  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*" --gcov-options '\-lp'
