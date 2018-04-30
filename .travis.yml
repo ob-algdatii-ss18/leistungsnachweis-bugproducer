@@ -7,7 +7,7 @@ before_install:
 script:
         - cmake -DCOVERAGE=1 .
         - cmake --build .
-        - ./tests
+        - gtest
 
 after_success:
   - coveralls --exclude build --exclude test --root .. -E ".*external.*" -E ".*CMakeFiles.*"
