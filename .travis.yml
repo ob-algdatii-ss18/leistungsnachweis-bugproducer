@@ -5,10 +5,10 @@ before_install:
     - pip install --user cpp-coveralls
 
 script:
-  - cmake -H. -Bbuild -DCOVERAGE=1
+  - cmake -DCOVERAGE=1 .
   - cd build
   - cmake --build .
-  - ctest
+  - ./test
 
 after_success:
   - coveralls --exclude build --exclude test --root .. -E ".*external.*" -E ".*CMakeFiles.*"
