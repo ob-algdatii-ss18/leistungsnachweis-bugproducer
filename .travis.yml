@@ -1,23 +1,9 @@
 language: cpp
-compiler: gcc
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-
+compiler:
+  - gcc
 before_install:
-    - pip install --user cpp-coveralls
-
-before_script:
-  - cd hidato
-  - gcov PlayGround.cpp
-
+  - pip install --user cpp-coveralls
 script:
-  - cmake -H. -Bbuild
-  - cd build
-  - cmake --build .
-  - ctest
-
+  - ./configure --enable-gcov && make && make check
 after_success:
-  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*" --gcov-options '\-lp'
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
