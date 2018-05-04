@@ -16,4 +16,4 @@ script:
   - ctest
 
 after_success:
-  - coveralls --root .. --exclude build --exclude test -E ".*external.*" -E ".*CMakeFiles.*"
+  - coveralls --root ..
