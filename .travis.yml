@@ -1,5 +1,3 @@
-sudo: false
-
 language:
   - cpp
 
@@ -18,7 +16,4 @@ script:
   - ctest
 
 after_success:
-  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
-
-notifications:
-  email: false
+  - coveralls --exclude build --exclude test --root .. -E ".*external.*" -E ".*CMakeFiles.*"
