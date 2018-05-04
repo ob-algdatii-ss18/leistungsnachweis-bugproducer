@@ -64,7 +64,6 @@ TEST(PlayGroundTest, shouldReturnFiveNeigboursOnTopMiddlePostionWithEmptyPlayGro
     }
 }
 
-
 TEST(PlayGroundTest, shouldReturnFiveNeigboursOnBottomMiddlePostionWithEmptyPlayGround) {
     vector<int> expectedNeighbours = {8, 9, 10, 12, 14};
     auto *gen = new PlayGround(4, 13);
@@ -128,7 +127,6 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopLeftPositionWithFilledPlaygr
     }
 }
 
-
 TEST(PlayGroundTest, shouldReturnFiveNeigboursOnBottomMiddlePostionWithFilledPlayGround) {
     vector<int> expectedNeighbours = {8, 9, 10, 12, 14};
     auto *gen = new PlayGround(4, 13);
@@ -189,7 +187,6 @@ TEST(PlayGroundTest, shouldReturnEightNeigboursOnMiddleMiddlePostionWithFilledPl
     }
 }
 
-
 TEST(PlayGroundTest, shouldReturnFiveNeigboursOnMiddleLeftPostionWithFilledPlayGround) {
     vector<int> expectedNeighbours = {0, 1, 5, 8, 9};
     auto *gen = new PlayGround(4, 4);
@@ -209,8 +206,6 @@ TEST(PlayGroundTest, shouldReturnFiveNeigboursOnMiddleLeftPostionWithFilledPlayG
         ASSERT_EQ(expectedNeighbours[i], haveNeighbours[i]);
     }
 }
-
-
 
 TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopRightPostionWithFilledPlayGround) {
     vector<int> expectedNeighbours = {2, 6, 7};
