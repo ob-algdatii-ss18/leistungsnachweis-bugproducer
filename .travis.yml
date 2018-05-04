@@ -16,4 +16,4 @@ script:
   - ctest
 
 after_success:
-  - coveralls --root .. -E "build/*"
+  - coveralls --root .. --exclude build/CMakeFiles/ --exclude build/googletest-src/
