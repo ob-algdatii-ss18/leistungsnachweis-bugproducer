@@ -30,8 +30,6 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
         ${CMAKE_BINARY_DIR}/googletest-build)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-
 add_subdirectory(test)
 
 enable_testing()
