@@ -16,4 +16,4 @@ script:
   - ctest
 
 after_success:
-  - coveralls --root ..
+  - coveralls --root .. --exclude build
