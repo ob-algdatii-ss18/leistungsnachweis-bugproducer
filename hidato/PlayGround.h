@@ -48,21 +48,21 @@ public:
 
 private:
 
-    void hasRightNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasRightNeighbour(std::vector<int> &neighbours, bool, int ) const;
 
-    void hasBottomNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasBottomNeighbour(std::vector<int> &neighbours, bool, int) const;
 
-    void hasBottomRightNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasBottomRightNeighbour(std::vector<int> &neighbours, bool, int) const;
 
-    void hasLeftNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasLeftNeighbour(std::vector<int> &neighbours, bool, int) const;
 
-    void hasBottomLeftNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasBottomLeftNeighbour(std::vector<int> &neighbours, bool, int) const;
 
-    void hasTopNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasTopNeighbour(std::vector<int> &neighbours, bool, int) const;
 
-    void hasTopRightNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasTopRightNeighbour(std::vector<int> &neighbours, bool, int) const;
 
-    void hasTopLeftNeighbour(std::vector<int> &neighbours, bool) const;
+    void hasTopLeftNeighbour(std::vector<int> &neighbours, bool, int) const;
 
     bool checkDensity();
 };
