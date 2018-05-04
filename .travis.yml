@@ -1,8 +1,15 @@
-language: cpp
-compiler: gcc
+sudo: false
+
+language:
+  - cpp
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
 
 before_install:
-    - pip install --user cpp-coveralls
+  - pip install --user cpp-coveralls
 
 script:
   - cmake -H. -Bbuild
@@ -11,4 +18,7 @@ script:
   - ctest
 
 after_success:
-  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*" --gcov "llvm-cov gcov" --gcov-options '\-lp'
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+
+notifications:
+  email: false
