@@ -59,10 +59,10 @@ void PlayGround::setStartPoint() {
 
     playGroundSolved.at(currentPosition / fieldSize).at(currentPosition % fieldSize) = fieldCounter++;
     numberAddresses.push_back(currentPosition);
-    calcNeighbours(0);
+    calcNeighbours(currentPosition, false);
 }
 
-vector<int> PlayGround::calcNeighbours(int value) {
+vector<int> PlayGround::calcNeighbours(int position,bool isPlayGroundFilled ) {
 
     neighbours.clear();
 
@@ -73,72 +73,72 @@ vector<int> PlayGround::calcNeighbours(int value) {
     if (currentPosition < fieldSize) {
         // erste spalte
         if (currentPosition % fieldSize == 0) {
-            hasRightNeighbour(neighbours, value);
-            hasBottomNeighbour(neighbours, value);
-            hasBottomRightNeighbour(neighbours, value);
+            hasRightNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomRightNeighbour(neighbours, isPlayGroundFilled);
         }
             // letzte Spalte
         else if (currentPosition % fieldSize == fieldSize - 1) {
-            hasLeftNeighbour(neighbours, value);
-            hasBottomLeftNeighbour(neighbours, value);
-            hasBottomNeighbour(neighbours, value);
+            hasLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomNeighbour(neighbours, isPlayGroundFilled);
 
         } else {
-            hasLeftNeighbour(neighbours, value);
-            hasRightNeighbour(neighbours, value);
-            hasBottomLeftNeighbour(neighbours, value);
-            hasBottomNeighbour(neighbours, value);
-            hasBottomRightNeighbour(neighbours, value);
+            hasLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasRightNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomRightNeighbour(neighbours, isPlayGroundFilled);
         }
     }
         // keine Nachbarn darunter, letzte Zeile
     else if (currentPosition >= ((fieldSize - 1) * fieldSize)) {
         // erste spalte
         if (currentPosition % fieldSize == 0) {
-            hasTopNeighbour(neighbours, value);
-            hasTopRightNeighbour(neighbours, value);
-            hasRightNeighbour(neighbours, value);
+            hasTopNeighbour(neighbours, isPlayGroundFilled);
+            hasTopRightNeighbour(neighbours, isPlayGroundFilled);
+            hasRightNeighbour(neighbours, isPlayGroundFilled);
 
         }
             // letzte Spalte
         else if (currentPosition % fieldSize == fieldSize - 1) {
-            hasTopLeftNeighbour(neighbours, value);
-            hasTopNeighbour(neighbours, value);
-            hasLeftNeighbour(neighbours, value);
+            hasTopLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasTopNeighbour(neighbours, isPlayGroundFilled);
+            hasLeftNeighbour(neighbours, isPlayGroundFilled);
         } else {
-            hasTopLeftNeighbour(neighbours, value);
-            hasTopNeighbour(neighbours, value);
-            hasTopRightNeighbour(neighbours, value);
-            hasLeftNeighbour(neighbours, value);
-            hasRightNeighbour(neighbours, value);
+            hasTopLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasTopNeighbour(neighbours, isPlayGroundFilled);
+            hasTopRightNeighbour(neighbours, isPlayGroundFilled);
+            hasLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasRightNeighbour(neighbours, isPlayGroundFilled);
         }
     } else {
         // erste spalte
         if (currentPosition % fieldSize == 0) {
-            hasTopNeighbour(neighbours, value);
-            hasTopRightNeighbour(neighbours, value);
-            hasRightNeighbour(neighbours, value);
-            hasBottomNeighbour(neighbours, value);
-            hasBottomRightNeighbour(neighbours, value);
+            hasTopNeighbour(neighbours, isPlayGroundFilled);
+            hasTopRightNeighbour(neighbours, isPlayGroundFilled);
+            hasRightNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomRightNeighbour(neighbours, isPlayGroundFilled);
 
         }
             // letzte Spalte
         else if (currentPosition % fieldSize == fieldSize - 1) {
-            hasTopLeftNeighbour(neighbours, value);
-            hasTopNeighbour(neighbours, value);
-            hasLeftNeighbour(neighbours, value);
-            hasBottomLeftNeighbour(neighbours, value);
-            hasBottomNeighbour(neighbours, value);
+            hasTopLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasTopNeighbour(neighbours, isPlayGroundFilled);
+            hasLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomNeighbour(neighbours, isPlayGroundFilled);
 
         } else {
-            hasTopLeftNeighbour(neighbours, value);
-            hasTopNeighbour(neighbours, value);
-            hasTopRightNeighbour(neighbours, value);
-            hasLeftNeighbour(neighbours, value);
-            hasRightNeighbour(neighbours, value);
-            hasBottomLeftNeighbour(neighbours, value);
-            hasBottomNeighbour(neighbours, value);
-            hasBottomRightNeighbour(neighbours, value);
+            hasTopLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasTopNeighbour(neighbours, isPlayGroundFilled);
+            hasTopRightNeighbour(neighbours, isPlayGroundFilled);
+            hasLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasRightNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomLeftNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomNeighbour(neighbours, isPlayGroundFilled);
+            hasBottomRightNeighbour(neighbours, isPlayGroundFilled);
         }
     }
 
@@ -149,8 +149,8 @@ const vector<int> &PlayGround::getNeighbours() const {
     return neighbours;
 }
 
-void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at((currentPosition - fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
             neighbours.push_back(currentPosition - fieldSize - 1);
         }
@@ -159,8 +159,8 @@ void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, int value) const {
     }
 }
 
-void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at((currentPosition - fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
             neighbours.push_back(currentPosition - fieldSize + 1);
         }
@@ -169,8 +169,8 @@ void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, int value) const 
     }
 }
 
-void PlayGround::hasTopNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasTopNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at((currentPosition - fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
             neighbours.push_back(currentPosition - fieldSize);
         }
@@ -179,8 +179,8 @@ void PlayGround::hasTopNeighbour(vector<int> &neighbours, int value) const {
     }
 }
 
-void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at((currentPosition + fieldSize) / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
             neighbours.push_back(currentPosition + fieldSize - 1);
         }
@@ -189,8 +189,8 @@ void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, int value) cons
     }
 }
 
-void PlayGround::hasLeftNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at(currentPosition / fieldSize).at((currentPosition - 1) % fieldSize) == 0) {
             neighbours.push_back(currentPosition - 1);
         }
@@ -199,8 +199,8 @@ void PlayGround::hasLeftNeighbour(vector<int> &neighbours, int value) const {
     }
 }
 
-void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at((currentPosition + fieldSize) / fieldSize).at((currentPosition + 1) % fieldSize) ==
             0) {
             neighbours.push_back(currentPosition + fieldSize + 1);
@@ -210,8 +210,8 @@ void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, int value) con
     }
 }
 
-void PlayGround::hasBottomNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasBottomNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at((currentPosition + fieldSize) / fieldSize).at(currentPosition % fieldSize) == 0) {
             neighbours.push_back(currentPosition + fieldSize);
         }
@@ -220,8 +220,8 @@ void PlayGround::hasBottomNeighbour(vector<int> &neighbours, int value) const {
     }
 }
 
-void PlayGround::hasRightNeighbour(vector<int> &neighbours, int value) const {
-    if (value == 0) {
+void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled) const {
+    if (!isPlayGroundFilled) {
         if (playGroundSolved.at(currentPosition / fieldSize).at((currentPosition + 1) % fieldSize) == 0) {
             neighbours.push_back(currentPosition + 1);
         }
@@ -246,7 +246,7 @@ void PlayGround::fillPlayGround() {
             playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
             currentPosition = nextPosition;
             numberAddresses.push_back(currentPosition);
-            calcNeighbours(0);
+            calcNeighbours(currentPosition, false);
             densityCounter++;
         }
 
@@ -355,8 +355,7 @@ void PlayGround::generateUnsolvedPlayground() {
 
 bool PlayGround::checkForSameNeighbours(int addr1, int addr2) {
 
-    currentPosition = addr1;
-    vector<int> one = calcNeighbours(1);
+    vector<int> one = calcNeighbours(addr1,true);
 
     for (int elem : one) {
         if (elem == addr2)
@@ -364,6 +363,14 @@ bool PlayGround::checkForSameNeighbours(int addr1, int addr2) {
     }
     return false;
 
+}
+
+void PlayGround::setPlayGroundSolved(const vector<vector<int>> &playGroundSolved) {
+    PlayGround::playGroundSolved = playGroundSolved;
+}
+
+void PlayGround::setCurrentPosition(int currentPosition) {
+    PlayGround::currentPosition = currentPosition;
 }
 
 
