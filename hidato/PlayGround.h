@@ -13,12 +13,11 @@ public:
 
     void generateField();
 
-    unsigned int getSize();
     int runCounter;
 
     const std::vector<std::vector<int>> &getPlayGroundSolved() const;
 
-    const std::vector<std::vector<int>> &getPlayGroundUnsolved() const;
+
 
     std::vector<int> calcNeighbours(int, bool);
 
@@ -50,9 +49,6 @@ private:
 
     bool checkForSameNeighbours(int, int);
 
-public:
-    void setCurrentPosition(int currentPosition);
-
 private:
 
     void hasRightNeighbour(std::vector<int> &neighbours, bool, int ) const;
@@ -71,7 +67,6 @@ private:
 
     void hasTopLeftNeighbour(std::vector<int> &neighbours, bool, int) const;
 
-    bool checkDensity();
 };
 
 
