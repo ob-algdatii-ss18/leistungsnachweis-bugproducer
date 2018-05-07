@@ -268,24 +268,26 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnBottomRightPostionWithFilledPla
 
 TEST(PlayGroundTest, shouldGenerateValidFilledPlayGround) {
     auto *gen = new PlayGround(4, -1);
+    gen->generateField();
     vector<vector<int>> filledPlayground = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
     vector<int> adresses;
-    gen->fillPlayGround();
     filledPlayground = gen->getPlayGroundSolved();
     adresses = gen->getNumberAddresses();
 
     for(int i =0; i<adresses.size(); i++){
         vector<int> neighbours = gen->calcNeighbours(adresses[i],true);
 
-        for(int j = 0; j <neighbours.size();j++){
-            int address = neighbours[j];
-            if(filledPlayground[address%FIELDSIZE][address/FIELDSIZE] == i+1 );{
-                cout << "passt";
-            }
-        }
+//        for(int j = 0; j < neighbours.size();j++){
+//            int address = neighbours[j];
+//            if(filledPlayground[address/FIELDSIZE][address%FIELDSIZE] == i+1 );{
+//                cout << "passt";
+//            }
+//        }
+
 
 
     }
+
 
 
 }
