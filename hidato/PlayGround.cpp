@@ -19,9 +19,6 @@ PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
 
 }
 
-unsigned int PlayGround::getSize() {
-    return 0;
-}
 
 void PlayGround::generateField() {
 
@@ -230,9 +227,6 @@ void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFil
     }
 }
 
-std::vector<std::vector<int>> PlayGround::getPlayGround() {
-    return playGroundSolved;
-}
 
 void PlayGround::fillPlayGround() {
     int nextPosition = 0;
@@ -349,7 +343,7 @@ void PlayGround::generateUnsolvedPlayground() {
         }
     }
 
-    printPlayGrounds();
+   // printPlayGrounds();
 
 }
 
@@ -369,8 +363,13 @@ void PlayGround::setPlayGroundSolved(const vector<vector<int>> &playGroundSolved
     PlayGround::playGroundSolved = playGroundSolved;
 }
 
-void PlayGround::setCurrentPosition(int currentPosition) {
-    PlayGround::currentPosition = currentPosition;
+const vector<vector<int>> &PlayGround::getPlayGroundSolved() const {
+    return playGroundSolved;
+}
+
+
+const vector<int> &PlayGround::getNumberAddresses() const {
+    return numberAddresses;
 }
 
 

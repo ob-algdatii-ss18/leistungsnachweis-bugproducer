@@ -265,23 +265,32 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnBottomRightPostionWithFilledPla
     }
 }
 
-TEST(PlayGroundTest, shouldReturnFiveNeigboursOnTopMiddlePostionWithFilledPlayGround) {
-    vector<int> expectedNeighbours = {0, 2, 4, 5, 6};
-    auto *gen = new PlayGround(4, 1);
+
+TEST(PlayGroundTest, shouldGenerateValidFilledPlayGround) {
+    auto *gen = new PlayGround(4, -1);
+    gen->generateField();
+    gen->fillPlayGround();
     vector<vector<int>> filledPlayground = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
+    vector<int> adresses;
+    filledPlayground = gen->getPlayGroundSolved();
+    adresses = gen->getNumberAddresses();
 
-    for (int i = 0; i < FIELDSIZE; i++) {
-        for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+    for(int i =0; i<adresses.size()-1; i++){
+        vector<int> neighbours = gen->calcNeighbours(adresses[i],true);
+        bool hasCorrectNeighbour = false;
+        for(int j = 0; j < neighbours.size();j++){
+            int address = neighbours[j];
+            if(filledPlayground[address/FIELDSIZE][address%FIELDSIZE] == i+2){
+                hasCorrectNeighbour = true;
+
+            }
+
         }
+        ASSERT_TRUE(hasCorrectNeighbour);
     }
 
-    gen->setPlayGroundSolved(filledPlayground);
-    vector<int> haveNeighbours = gen->calcNeighbours(1, true);
-    ASSERT_EQ(expectedNeighbours.size(), haveNeighbours.size());
-    for (int i = 0; i < expectedNeighbours.size(); i++) {
-        ASSERT_EQ(expectedNeighbours[i], haveNeighbours[i]);
-    }
+
+
 }
 
 
