@@ -230,9 +230,6 @@ void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFil
     }
 }
 
-std::vector<std::vector<int>> PlayGround::getPlayGround() {
-    return playGroundSolved;
-}
 
 void PlayGround::fillPlayGround() {
     int nextPosition = 0;
@@ -371,6 +368,18 @@ void PlayGround::setPlayGroundSolved(const vector<vector<int>> &playGroundSolved
 
 void PlayGround::setCurrentPosition(int currentPosition) {
     PlayGround::currentPosition = currentPosition;
+}
+
+const vector<vector<int>> &PlayGround::getPlayGroundSolved() const {
+    return playGroundSolved;
+}
+
+const vector<vector<int>> &PlayGround::getPlayGroundUnsolved() const {
+    return playGroundUnsolved;
+}
+
+const vector<int> &PlayGround::getNumberAddresses() const {
+    return numberAddresses;
 }
 
 
