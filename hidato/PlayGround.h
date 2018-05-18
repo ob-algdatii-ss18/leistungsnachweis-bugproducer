@@ -40,6 +40,10 @@ private:
 public:
     const std::vector<int> &getNumberAddresses() const;
 
+    void setNumberAddresses(const std::vector<int> &numberAddresses);
+
+    const std::vector<std::vector<int>> &getPlayGroundUnsolved() const;
+
 private:
 
     unsigned int fieldSize;
