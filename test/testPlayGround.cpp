@@ -309,7 +309,7 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
     filledPlayground[3][3] = 13;
     filledPlayground[3][2] = 14;
     filledPlayground[3][1] = 15;
-    filledPlayground[3][0] = 16;
+    filledPlayground[3][0] = 0;
 
     vector<vector<int>> filledPlaygroundDummy = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
 
@@ -327,10 +327,10 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
     filledPlaygroundDummy[2][3] = 0;
     filledPlaygroundDummy[3][3] = 13;
     filledPlaygroundDummy[3][2] = 0;
-    filledPlaygroundDummy[3][1] = 0;
-    filledPlaygroundDummy[3][0] = 16;
+    filledPlaygroundDummy[3][1] = 15;
+    filledPlaygroundDummy[3][0] = -1;
 
-    vector<int> numberAddresses {0,1,2,3,7,6,5,4,8,9,10,11,15,14,13,12};
+    vector<int> numberAddresses {0,1,2,3,7,6,5,4,8,9,10,11,15,14,13};
 
     gen->setPlayGroundSolved(filledPlayground);
     gen->setNumberAddresses(numberAddresses);
