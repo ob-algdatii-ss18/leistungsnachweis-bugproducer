@@ -6,7 +6,7 @@
 
 using namespace std;
 
-static const int FIELDSIZE =4;
+static const int FIELDSIZE = 4;
 
 
 TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopLeftPositionWithEmptyPlayGround) {
@@ -115,12 +115,12 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopLeftPositionWithFilledPlaygr
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
     gen->setPlayGroundSolved(filledPlayground);
-    vector<int> haveNeighbours = gen->calcNeighbours(0,true);
+    vector<int> haveNeighbours = gen->calcNeighbours(0, true);
     ASSERT_EQ(expectedNeighbours.size(), haveNeighbours.size());
     for (int i = 0; i < expectedNeighbours.size(); i++) {
         ASSERT_EQ(expectedNeighbours[i], haveNeighbours[i]);
@@ -135,7 +135,7 @@ TEST(PlayGroundTest, shouldReturnFiveNeigboursOnBottomMiddlePostionWithFilledPla
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
@@ -155,7 +155,7 @@ TEST(PlayGroundTest, shouldReturnFiveNeigboursOnMiddleRightPostionWithFilledyPla
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
@@ -175,7 +175,7 @@ TEST(PlayGroundTest, shouldReturnEightNeigboursOnMiddleMiddlePostionWithFilledPl
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
@@ -195,7 +195,7 @@ TEST(PlayGroundTest, shouldReturnFiveNeigboursOnMiddleLeftPostionWithFilledPlayG
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
@@ -214,7 +214,7 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnTopRightPostionWithFilledPlayGr
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
@@ -234,7 +234,7 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnBottomLeftPostionWithFilledPlay
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
@@ -253,7 +253,7 @@ TEST(PlayGroundTest, shouldReturnThreeNeigboursOnBottomRightPostionWithFilledPla
 
     for (int i = 0; i < FIELDSIZE; i++) {
         for (int j = 0; j < FIELDSIZE; j++) {
-            filledPlayground[i][j] = i*FIELDSIZE+j+1;
+            filledPlayground[i][j] = i * FIELDSIZE + j + 1;
         }
     }
 
@@ -275,12 +275,12 @@ TEST(PlayGroundTest, shouldGenerateValidFilledPlayGround) {
     filledPlayground = gen->getPlayGroundSolved();
     adresses = gen->getNumberAddresses();
 
-    for(int i =0; i<adresses.size()-1; i++){
-        vector<int> neighbours = gen->calcNeighbours(adresses[i],true);
+    for (int i = 0; i < adresses.size() - 1; i++) {
+        vector<int> neighbours = gen->calcNeighbours(adresses[i], true);
         bool hasCorrectNeighbour = false;
-        for(int j = 0; j < neighbours.size();j++){
+        for (int j = 0; j < neighbours.size(); j++) {
             int address = neighbours[j];
-            if(filledPlayground[address/FIELDSIZE][address%FIELDSIZE] == i+2){
+            if (filledPlayground[address / FIELDSIZE][address % FIELDSIZE] == i + 2) {
                 hasCorrectNeighbour = true;
 
             }
@@ -288,9 +288,57 @@ TEST(PlayGroundTest, shouldGenerateValidFilledPlayGround) {
         }
         ASSERT_TRUE(hasCorrectNeighbour);
     }
+}
 
+TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
+    auto *gen = new PlayGround(4, 0);
+    vector<vector<int>> filledPlayground = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
 
+    filledPlayground[0][0] = 1;
+    filledPlayground[0][1] = 2;
+    filledPlayground[0][2] = 3;
+    filledPlayground[0][3] = 4;
+    filledPlayground[1][3] = 5;
+    filledPlayground[1][2] = 6;
+    filledPlayground[1][1] = 7;
+    filledPlayground[1][0] = 8;
+    filledPlayground[2][0] = 9;
+    filledPlayground[2][1] = 10;
+    filledPlayground[2][2] = 11;
+    filledPlayground[2][3] = 12;
+    filledPlayground[3][3] = 13;
+    filledPlayground[3][2] = 14;
+    filledPlayground[3][1] = 15;
+    filledPlayground[3][0] = 16;
 
+    vector<vector<int>> filledPlaygroundDummy = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
+
+    filledPlaygroundDummy[0][0] = 1;
+    filledPlaygroundDummy[0][1] = 0;
+    filledPlaygroundDummy[0][2] = 0;
+    filledPlaygroundDummy[0][3] = 0;
+    filledPlaygroundDummy[1][3] = 5;
+    filledPlaygroundDummy[1][2] = 0;
+    filledPlaygroundDummy[1][1] = 0;
+    filledPlaygroundDummy[1][0] = 0;
+    filledPlaygroundDummy[2][0] = 9;
+    filledPlaygroundDummy[2][1] = 10;
+    filledPlaygroundDummy[2][2] = 0;
+    filledPlaygroundDummy[2][3] = 0;
+    filledPlaygroundDummy[3][3] = 13;
+    filledPlaygroundDummy[3][2] = 0;
+    filledPlaygroundDummy[3][1] = 0;
+    filledPlaygroundDummy[3][0] = 16;
+
+    vector<int> numberAddresses {0,1,2,3,7,6,5,4,8,9,10,11,15,14,13,12};
+
+    gen->setPlayGroundSolved(filledPlayground);
+    gen->setNumberAddresses(numberAddresses);
+    gen->generateUnsolvedPlayground();
+
+    vector<vector<int>> unsolvedPlayground = gen->getPlayGroundUnsolved();
+
+    ASSERT_EQ(unsolvedPlayground, filledPlaygroundDummy);
 }
 
 
