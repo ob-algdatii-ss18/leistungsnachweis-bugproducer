@@ -6,6 +6,8 @@
 #include "hidato5x5.h"
 #include "hidato6x6.h"
 
+class Hidato4x4;
+
 namespace Ui {
 class ChooseWindow;
 }
