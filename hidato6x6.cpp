@@ -2,6 +2,8 @@
 #include "ui_hidato6x6.h"
 #include <QDebug>
 
+#include "choosewindow.h"
+
 
 Hidato6x6::Hidato6x6(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +13,7 @@ Hidato6x6::Hidato6x6(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->button_check, SIGNAL (clicked()),this,SLOT(checkSolution()));
     connect(ui->button_new, SIGNAL (clicked()),this,SLOT(newGame()));
+    connect(ui->button_back, SIGNAL (clicked()),this,SLOT(back()));
     initPlayGroundQTextEdit();
     createNewPlayGround();
 }
@@ -85,6 +88,13 @@ void Hidato6x6::checkSolution()
 void Hidato6x6::newGame()
 {
      createNewPlayGround();
+
+}
+
+void Hidato6x6::back(){
+    mainMenu = new ChooseWindow(0);
+    mainMenu->show();
+    this->hide();
 
 }
 

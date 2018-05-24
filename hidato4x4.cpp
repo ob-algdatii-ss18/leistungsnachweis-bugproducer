@@ -13,7 +13,7 @@ Hidato4x4::Hidato4x4(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->button_check, SIGNAL (clicked()),this,SLOT(checkSolution()));
     connect(ui->button_new, SIGNAL (clicked()),this,SLOT(newGame()));
-     connect(ui->button_back, SIGNAL (clicked()),this,SLOT(back()));
+    connect(ui->button_back, SIGNAL (clicked()),this,SLOT(back()));
     initPlayGroundQTextEdit();
     createNewPlayGround();
 }
@@ -22,6 +22,7 @@ Hidato4x4::~Hidato4x4()
 {
     delete ui;
     delete playground;
+    //delete mainMenu;
 
 }
 
@@ -48,7 +49,7 @@ void Hidato4x4::checkSolution()
 
 void Hidato4x4::newGame()
 {
-     createNewPlayGround();
+    createNewPlayGround();
 
 }
 
@@ -100,6 +101,8 @@ void Hidato4x4::back(){
     mainMenu = new ChooseWindow(0);
     mainMenu->show();
     this->hide();
+    this->~Hidato4x4();
+
 
 }
 

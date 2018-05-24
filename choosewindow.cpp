@@ -38,6 +38,8 @@ void ChooseWindow::startGame5x5(){
 
 void ChooseWindow::startGame6x6(){
 
+
+
     hidato6x6.show();
     this->hide();
 

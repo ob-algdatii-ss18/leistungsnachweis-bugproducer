@@ -2,6 +2,9 @@
 #include "ui_hidato5x5.h"
 #include <QDebug>
 
+
+#include "choosewindow.h"
+
 Hidato5x5::Hidato5x5(QWidget *parent) :
     QMainWindow(parent),
      playground(new PlayGround(5,-1)),
@@ -10,6 +13,7 @@ Hidato5x5::Hidato5x5(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->button_check, SIGNAL (clicked()),this,SLOT(checkSolution()));
     connect(ui->button_new, SIGNAL (clicked()),this,SLOT(newGame()));
+    connect(ui->button_back, SIGNAL (clicked()),this,SLOT(back()));
     initPlayGroundQTextEdit();
     createNewPlayGround();
 }
@@ -68,6 +72,13 @@ void Hidato5x5::createNewPlayGround(){
             playGroundQTextEdit5x5[i*5+j]->setAlignment(Qt::AlignCenter);
         }
     }
+}
+
+void Hidato5x5::back(){
+    mainMenu = new ChooseWindow(0);
+    mainMenu->show();
+    this->hide();
+
 }
 
 void Hidato5x5::initPlayGroundQTextEdit()
