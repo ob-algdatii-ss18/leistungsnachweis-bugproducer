@@ -22,7 +22,7 @@ Hidato4x4::~Hidato4x4()
 {
     delete ui;
     delete playground;
-    delete mainMenu;
+    //delete mainMenu;
 
 }
 
@@ -36,15 +36,21 @@ void Hidato4x4::checkSolution()
                 playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
                 playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
             }else{
-                playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::red);
-                playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
-                qInfo() << playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt();
-                qInfo() << "false";
+                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt() == -1){
+                    playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
+                    playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
+                }else{
+                    playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::red);
+                    playGroundQTextEdit4x4[i*4+j]->setPlainText(QString::number(playground->getPlayGroundSolved()[i][j]) + "/" + playGroundQTextEdit4x4[i*4+j]->toPlainText());
+                    qInfo() << playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt();
+                    qInfo() << "false";
+                }
+
             }
             playGroundQTextEdit4x4[i*4+j]->setAlignment(Qt::AlignCenter);
         }
-    }
 
+    }
 }
 
 void Hidato4x4::newGame()
@@ -98,9 +104,9 @@ void Hidato4x4::initPlayGroundQTextEdit()
 }
 
 void Hidato4x4::back(){
-   //ainMenu = parent();
-   //mainMenu->show();
-     this->parentWidget()->show();
+    //ainMenu = parent();
+    //mainMenu->show();
+    this->parentWidget()->show();
     this->hide();
     this->~Hidato4x4();
 
