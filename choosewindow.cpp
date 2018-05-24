@@ -22,7 +22,8 @@ ChooseWindow::~ChooseWindow()
 
 void ChooseWindow::startGame4x4(){
 
-    hidato4x4.show();
+    hidato4x4 = new Hidato4x4(this);
+    hidato4x4->show();
     this->hide();
 
 
@@ -30,7 +31,8 @@ void ChooseWindow::startGame4x4(){
 
 void ChooseWindow::startGame5x5(){
 
-    hidato5x5.show();
+    hidato5x5 = new Hidato5x5(this);
+    hidato5x5->show();
     this->hide();
 
 
@@ -38,11 +40,9 @@ void ChooseWindow::startGame5x5(){
 
 void ChooseWindow::startGame6x6(){
 
-
-
-    hidato6x6.show();
+    hidato6x6 = new Hidato6x6(this);
+    hidato6x6->show();
     this->hide();
-
 
 }
 

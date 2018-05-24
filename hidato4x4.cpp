@@ -22,7 +22,7 @@ Hidato4x4::~Hidato4x4()
 {
     delete ui;
     delete playground;
-    //delete mainMenu;
+    delete mainMenu;
 
 }
 
@@ -98,8 +98,9 @@ void Hidato4x4::initPlayGroundQTextEdit()
 }
 
 void Hidato4x4::back(){
-    mainMenu = new ChooseWindow(0);
-    mainMenu->show();
+   //ainMenu = parent();
+   //mainMenu->show();
+     this->parentWidget()->show();
     this->hide();
     this->~Hidato4x4();
 
