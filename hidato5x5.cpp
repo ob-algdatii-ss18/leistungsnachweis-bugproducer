@@ -2,14 +2,18 @@
 #include "ui_hidato5x5.h"
 #include <QDebug>
 
+
+#include "choosewindow.h"
+
 Hidato5x5::Hidato5x5(QWidget *parent) :
     QMainWindow(parent),
-     playground(new PlayGround(5,-1)),
+    playground(new PlayGround(5,-1)),
     ui(new Ui::Hidato5x5)
 {
     ui->setupUi(this);
     connect(ui->button_check, SIGNAL (clicked()),this,SLOT(checkSolution()));
     connect(ui->button_new, SIGNAL (clicked()),this,SLOT(newGame()));
+    connect(ui->button_back, SIGNAL (clicked()),this,SLOT(back()));
     initPlayGroundQTextEdit();
     createNewPlayGround();
 }
@@ -30,10 +34,15 @@ void Hidato5x5::checkSolution()
                 playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::green);
                 playGroundQTextEdit5x5[i*5+j]->setPlainText(playGroundQTextEdit5x5[i*5+j]->toPlainText());
             }else{
-                playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::red);
-                playGroundQTextEdit5x5[i*5+j]->setPlainText(playGroundQTextEdit5x5[i*5+j]->toPlainText());
-                qInfo() << playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt();
-                qInfo() << "false";
+                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt() == -1){
+                    playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::green);
+                    playGroundQTextEdit5x5[i*5+j]->setPlainText(playGroundQTextEdit5x5[i*5+j]->toPlainText());
+                }else{
+                    playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::red);
+                    playGroundQTextEdit5x5[i*5+j]->setPlainText(QString::number(playground->getPlayGroundSolved()[i][j]) + "/" + playGroundQTextEdit5x5[i*5+j]->toPlainText());
+                    qInfo() << playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt();
+                    qInfo() << "false";
+                }
             }
             playGroundQTextEdit5x5[i*5+j]->setAlignment(Qt::AlignCenter);
 
@@ -44,7 +53,7 @@ void Hidato5x5::checkSolution()
 
 void Hidato5x5::newGame()
 {
-     createNewPlayGround();
+    createNewPlayGround();
 
 }
 
@@ -68,6 +77,13 @@ void Hidato5x5::createNewPlayGround(){
             playGroundQTextEdit5x5[i*5+j]->setAlignment(Qt::AlignCenter);
         }
     }
+}
+
+void Hidato5x5::back(){
+    mainMenu = new ChooseWindow(0);
+    mainMenu->show();
+    this->hide();
+
 }
 
 void Hidato5x5::initPlayGroundQTextEdit()

@@ -2,6 +2,8 @@
 #include "ui_hidato6x6.h"
 #include <QDebug>
 
+#include "choosewindow.h"
+
 
 Hidato6x6::Hidato6x6(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +13,7 @@ Hidato6x6::Hidato6x6(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->button_check, SIGNAL (clicked()),this,SLOT(checkSolution()));
     connect(ui->button_new, SIGNAL (clicked()),this,SLOT(newGame()));
+    connect(ui->button_back, SIGNAL (clicked()),this,SLOT(back()));
     initPlayGroundQTextEdit();
     createNewPlayGround();
 }
@@ -70,10 +73,15 @@ void Hidato6x6::checkSolution()
                 playGroundQTextEdit6x6[i*6+j]->setTextColor(Qt::green);
                 playGroundQTextEdit6x6[i*6+j]->setPlainText(playGroundQTextEdit6x6[i*6+j]->toPlainText());
             }else{
-                playGroundQTextEdit6x6[i*6+j]->setTextColor(Qt::red);
-                playGroundQTextEdit6x6[i*6+j]->setPlainText(playGroundQTextEdit6x6[i*6+j]->toPlainText());
-                qInfo() << playGroundQTextEdit6x6[i*6+j]->toPlainText().toInt();
-                qInfo() << "false";
+                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit6x6[i*6+j]->toPlainText().toInt() == -1){
+                    playGroundQTextEdit6x6[i*6+j]->setTextColor(Qt::green);
+                    playGroundQTextEdit6x6[i*6+j]->setPlainText(playGroundQTextEdit6x6[i*6+j]->toPlainText());
+                }else{
+                    playGroundQTextEdit6x6[i*6+j]->setTextColor(Qt::red);
+                    playGroundQTextEdit6x6[i*6+j]->setPlainText(QString::number(playground->getPlayGroundSolved()[i][j]) + "/" + playGroundQTextEdit6x6[i*6+j]->toPlainText());
+                    qInfo() << playGroundQTextEdit6x6[i*6+j]->toPlainText().toInt();
+                    qInfo() << "false";
+                }
             }
             playGroundQTextEdit6x6[i*6+j]->setAlignment(Qt::AlignCenter);
 
@@ -84,7 +92,14 @@ void Hidato6x6::checkSolution()
 
 void Hidato6x6::newGame()
 {
-     createNewPlayGround();
+    createNewPlayGround();
+
+}
+
+void Hidato6x6::back(){
+    mainMenu = new ChooseWindow(0);
+    mainMenu->show();
+    this->hide();
 
 }
 

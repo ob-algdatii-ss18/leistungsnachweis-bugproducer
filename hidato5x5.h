@@ -5,6 +5,8 @@
 #include "PlayGround.h"
 #include <QtWidgets/QTextEdit>
 
+class ChooseWindow;
+
 namespace Ui {
 class Hidato5x5;
 }
@@ -20,10 +22,12 @@ public:
 public slots:
     void checkSolution();
     void newGame();
+     void back();
 private:
     Ui::Hidato5x5 *ui;
     QVector<QTextEdit*> playGroundQTextEdit5x5;
     PlayGround *playground;
+    ChooseWindow *mainMenu;
     void initPlayGroundQTextEdit();
     void createNewPlayGround();
 };

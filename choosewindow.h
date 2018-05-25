@@ -6,6 +6,8 @@
 #include "hidato5x5.h"
 #include "hidato6x6.h"
 
+class Hidato4x4;
+
 namespace Ui {
 class ChooseWindow;
 }
@@ -25,9 +27,9 @@ private slots:
 
 private:
     Ui::ChooseWindow *ui;
-    Hidato4x4 hidato4x4;
-    Hidato5x5 hidato5x5;
-    Hidato6x6 hidato6x6;
+    Hidato4x4 *hidato4x4;
+    Hidato5x5 *hidato5x5;
+    Hidato6x6 *hidato6x6;
 };
 
 #endif // CHOOSEWINDOW_H

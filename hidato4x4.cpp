@@ -1,6 +1,7 @@
 #include "hidato4x4.h"
 #include "ui_hidato4x4.h"
 #include <QDebug>
+#include "choosewindow.h"
 
 
 
@@ -12,6 +13,7 @@ Hidato4x4::Hidato4x4(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->button_check, SIGNAL (clicked()),this,SLOT(checkSolution()));
     connect(ui->button_new, SIGNAL (clicked()),this,SLOT(newGame()));
+    connect(ui->button_back, SIGNAL (clicked()),this,SLOT(back()));
     initPlayGroundQTextEdit();
     createNewPlayGround();
 }
@@ -19,6 +21,9 @@ Hidato4x4::Hidato4x4(QWidget *parent) :
 Hidato4x4::~Hidato4x4()
 {
     delete ui;
+    delete playground;
+    //delete mainMenu;
+
 }
 
 void Hidato4x4::checkSolution()
@@ -31,20 +36,26 @@ void Hidato4x4::checkSolution()
                 playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
                 playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
             }else{
-                playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::red);
-                playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
-                qInfo() << playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt();
-                qInfo() << "false";
+                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt() == -1){
+                    playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
+                    playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
+                }else{
+                    playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::red);
+                    playGroundQTextEdit4x4[i*4+j]->setPlainText(QString::number(playground->getPlayGroundSolved()[i][j]) + "/" + playGroundQTextEdit4x4[i*4+j]->toPlainText());
+                    qInfo() << playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt();
+                    qInfo() << "false";
+                }
+
             }
             playGroundQTextEdit4x4[i*4+j]->setAlignment(Qt::AlignCenter);
         }
-    }
 
+    }
 }
 
 void Hidato4x4::newGame()
 {
-     createNewPlayGround();
+    createNewPlayGround();
 
 }
 
@@ -90,6 +101,16 @@ void Hidato4x4::initPlayGroundQTextEdit()
     playGroundQTextEdit4x4.push_back(ui->text_number_13);
     playGroundQTextEdit4x4.push_back(ui->text_number_14);
     playGroundQTextEdit4x4.push_back(ui->text_number_15);
+}
+
+void Hidato4x4::back(){
+    //ainMenu = parent();
+    //mainMenu->show();
+    this->parentWidget()->show();
+    this->hide();
+    this->~Hidato4x4();
+
+
 }
 
 
