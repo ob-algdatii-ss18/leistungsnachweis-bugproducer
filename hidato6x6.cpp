@@ -64,7 +64,7 @@ void Hidato6x6::initPlayGroundQTextEdit()
 }
 
 void Hidato6x6::checkSolution()
-{
+{    ui->button_check->setDisabled(true);
     for(int i = 0; i < 6; i++){
         for(int j =0; j< 6; j++){
             if(playground->getPlayGroundSolved()[i][j] == playGroundQTextEdit6x6[i*6+j]->toPlainText().toInt()){
@@ -93,6 +93,7 @@ void Hidato6x6::checkSolution()
 void Hidato6x6::newGame()
 {
     createNewPlayGround();
+     ui->button_check->setDisabled(false);
 
 }
 

@@ -28,6 +28,7 @@ Hidato4x4::~Hidato4x4()
 
 void Hidato4x4::checkSolution()
 {
+     ui->button_check->setDisabled(true);
     for(int i = 0; i < 4; i++){
         for(int j =0; j< 4; j++){
             if(playground->getPlayGroundSolved()[i][j] == playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt()){
@@ -56,6 +57,7 @@ void Hidato4x4::checkSolution()
 void Hidato4x4::newGame()
 {
     createNewPlayGround();
+    ui->button_check->setDisabled(false);
 
 }
 

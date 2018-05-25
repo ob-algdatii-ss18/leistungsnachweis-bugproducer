@@ -25,7 +25,7 @@ Hidato5x5::~Hidato5x5()
 
 
 void Hidato5x5::checkSolution()
-{
+{    ui->button_check->setDisabled(true);
     for(int i = 0; i < 5; i++){
         for(int j =0; j< 5; j++){
             if(playground->getPlayGroundSolved()[i][j] == playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt()){
@@ -54,6 +54,7 @@ void Hidato5x5::checkSolution()
 void Hidato5x5::newGame()
 {
     createNewPlayGround();
+     ui->button_check->setDisabled(false);
 
 }
 
