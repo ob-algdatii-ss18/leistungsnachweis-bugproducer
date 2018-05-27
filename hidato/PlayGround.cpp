@@ -7,9 +7,7 @@
 
 using namespace std;
 
-std::random_device rd;     // only used once to initialise (seed) engine
-std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-std::uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
+
 
 
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
@@ -31,12 +29,6 @@ void PlayGround::generateField() {
     }
 
     setStartPoint();
-
-
-/*
-    for (unsigned int i = 0; i < getNeighbours().size(); i++) {
-        cout << calcNeighbours().at(i) << "\n";
-    }*/
 }
 
 void PlayGround::setStartPoint() {
@@ -45,11 +37,11 @@ void PlayGround::setStartPoint() {
     numberAddresses = vector<int>();
 
 
-    srand((unsigned int) time(0));
-
+    srand((unsigned int) time(nullptr));
+    int random_integer = getRandomNumber();
 
     if (isRandom == -1) {
-        currentPosition = (rand() % (fieldSize * fieldSize));
+        currentPosition = (random_integer % (fieldSize * fieldSize));
     } else {
         currentPosition = isRandom;
     }
@@ -233,8 +225,8 @@ void PlayGround::fillPlayGround() {
     int nextPosition = 0;
     float densityCounter = 0;
 
-    while (getNeighbours().size() != 0) {
-        auto random_integer = uni(rng);
+    while (!getNeighbours().empty()) {
+        int random_integer = getRandomNumber();
         nextPosition = random_integer % getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
         if (playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
@@ -279,8 +271,8 @@ void PlayGround::printPlayGrounds() {
 
     cout << "\n\n\n" << endl;
 
-    for (int i = 0; i < numberAddresses.size(); i++) {
-        cout << numberAddresses[i] << " ";
+    for (int numberAddresse : numberAddresses) {
+        cout << numberAddresse << " ";
 
     }
     cout << endl << "Anzahl der Durchlaeufe: " << runCounter;
@@ -360,5 +352,21 @@ void PlayGround::setNumberAddresses(const vector<int> &numberAddresses) {
 const vector<vector<int>> &PlayGround::getPlayGroundUnsolved() const {
     return playGroundUnsolved;
 }
+
+int PlayGround::getRandomNumber() {
+    try {
+        std::random_device rd;     // only used once to initialise (seed) engine
+        std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
+        std::uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
+
+        return uni(rng);
+
+    }catch (int e){
+        cout << "Random failed!" << e << std::endl;
+    }
+
+
+}
+
 
 
