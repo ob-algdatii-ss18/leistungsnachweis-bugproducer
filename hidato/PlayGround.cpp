@@ -6,7 +6,9 @@
 #include <ctime>
 
 using namespace std;
-
+std::random_device rd;     // only used once to initialise (seed) engine
+std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
+std::uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
 
 
 
@@ -38,7 +40,7 @@ void PlayGround::setStartPoint() {
 
 
     srand((unsigned int) time(nullptr));
-    int random_integer = getRandomNumber();
+    auto random_integer = uni(rng);
 
     if (isRandom == -1) {
         currentPosition = (random_integer % (fieldSize * fieldSize));
@@ -220,13 +222,12 @@ void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFil
     }
 }
 
-
 void PlayGround::fillPlayGround() {
     int nextPosition = 0;
     float densityCounter = 0;
 
     while (!getNeighbours().empty()) {
-        int random_integer = getRandomNumber();
+        auto random_integer = uni(rng);
         nextPosition = random_integer % getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
         if (playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
@@ -339,11 +340,9 @@ const vector<vector<int>> &PlayGround::getPlayGroundSolved() const {
     return playGroundSolved;
 }
 
-
 const vector<int> &PlayGround::getNumberAddresses() const {
     return numberAddresses;
 }
-
 
 void PlayGround::setNumberAddresses(const vector<int> &numberAddresses) {
     PlayGround::numberAddresses = numberAddresses;
@@ -353,20 +352,7 @@ const vector<vector<int>> &PlayGround::getPlayGroundUnsolved() const {
     return playGroundUnsolved;
 }
 
-int PlayGround::getRandomNumber() {
-    try {
-        std::random_device rd;     // only used once to initialise (seed) engine
-        std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-        std::uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
 
-        return uni(rng);
-
-    }catch (int e){
-        cout << "Random failed!" << e << std::endl;
-    }
-
-
-}
 
 
 

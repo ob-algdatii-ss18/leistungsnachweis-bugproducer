@@ -37,7 +37,6 @@ private:
     int isRandom;
     int fieldCounter;
 
-    int getRandomNumber();
     void setStartPoint();
     bool checkForSameNeighbours(int, int);
     void hasRightNeighbour(std::vector<int> &neighbours, bool, int ) const;
