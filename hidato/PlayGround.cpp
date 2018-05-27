@@ -19,7 +19,6 @@ PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
 
 }
 
-
 void PlayGround::generateField() {
 
     playGroundSolved = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
@@ -52,7 +51,6 @@ void PlayGround::setStartPoint() {
     numberAddresses.push_back(currentPosition);
     calcNeighbours(currentPosition, false);
 }
-
 
 vector<int> PlayGround::calcNeighbours(int position, bool isPlayGroundFilled) {
 
@@ -307,7 +305,7 @@ void PlayGround::generateUnsolvedPlayground() {
                 int temp = playGroundSolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize];
                 playGroundUnsolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize] = temp;
             }
-            i++;
+         //  i++;
         }
     }
 
