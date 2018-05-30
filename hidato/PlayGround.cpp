@@ -9,7 +9,7 @@ using namespace std;
 std::random_device rd;     // only used once to initialise (seed) engine
 std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
 std::uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
-
+int emptyCounter = 0;
 
 
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
@@ -274,12 +274,16 @@ void PlayGround::printPlayGrounds() {
         cout << numberAddresse << " ";
 
     }
-    cout << endl << "Anzahl der Durchlaeufe: " << runCounter;
+    cout << endl << "Anzahl der Durchlaeufe: " << runCounter << endl;
+    cout << endl << "Empty Fields: " << emptyCounter << endl;
+    cout << endl << "------------------------------------------------------ " << endl;
 
 
 }
 
 void PlayGround::generateUnsolvedPlayground() {
+    emptyCounter = 0;
+
 
     playGroundUnsolved = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
     int deleteMarker = 9;
@@ -306,9 +310,9 @@ void PlayGround::generateUnsolvedPlayground() {
                 playGroundUnsolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize] = temp;
             }
         }
-         if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 3])) {
-             int temp = playGroundSolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize];
-             playGroundUnsolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize] = temp;
+        if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 3])) {
+            int temp = playGroundSolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize];
+            playGroundUnsolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize] = temp;
         }
     }
 
@@ -319,6 +323,16 @@ void PlayGround::generateUnsolvedPlayground() {
             }
         }
     }
+
+    for (int i = 0; i < fieldSize; i++) {
+        for (int j = 0; j < fieldSize; j++) {
+            if (playGroundUnsolved[i][j] == 0) {
+                emptyCounter++;
+            }
+        }
+    }
+
+
 }
 
 bool PlayGround::checkForSameNeighbours(int addr1, int addr2) {
