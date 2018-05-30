@@ -335,23 +335,24 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
     gen->setPlayGroundSolved(filledPlayground);
     gen->setNumberAddresses(numberAddresses);
     gen->generateUnsolvedPlayground();
+    gen->printPlayGrounds();
 
     vector<vector<int>> unsolvedPlayground = gen->getPlayGroundUnsolved();
 
     ASSERT_EQ(unsolvedPlayground, filledPlaygroundDummy);
 }
 
+/*
+TEST(PlayGroundTest, test) {
 
-//TEST(PlayGroundTest, test) {
-//
-//    for(int i = 0; i < 100; i++) {
-//        cout << "\n" << endl;
-//        auto *gen = new PlayGround(6, -1);
-//        gen->generateField();
-//        gen->fillPlayGround();
-//        gen->printPlayGrounds();
-//
-//
-//   }
-//
-//}
+    for(int i = 0; i < 100; i++) {
+        cout << "\n" << endl;
+        auto *gen = new PlayGround(6, -1);
+        gen->generateField();
+        gen->fillPlayGround();
+        gen->printPlayGrounds();
+
+
+   }
+
+}*/

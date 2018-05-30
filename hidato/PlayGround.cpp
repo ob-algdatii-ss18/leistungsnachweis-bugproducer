@@ -305,7 +305,10 @@ void PlayGround::generateUnsolvedPlayground() {
                 int temp = playGroundSolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize];
                 playGroundUnsolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize] = temp;
             }
-         //  i++;
+        }
+         if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 3])) {
+             int temp = playGroundSolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize];
+             playGroundUnsolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize] = temp;
         }
     }
 
