@@ -300,7 +300,8 @@ void PlayGround::generateUnsolvedPlayground() {
 
 
 
-    for (int i = 1; i <= numberAddresses.size() - 3; i += 2) {
+    for (int i = 0; i <= numberAddresses.size() - 3; i += 2) {
+        int test = numberAddresses[i];
         vector<int> tmp = calcNeighbours(numberAddresses[i], false, playGroundUnsolved);
         if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundUnsolved) && checkForInLine(numberAddresses[i])) {
             playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = 0;
