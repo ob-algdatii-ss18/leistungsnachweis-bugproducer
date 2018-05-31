@@ -343,18 +343,18 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
 }
 
 
-//TEST(PlayGroundTest, test) {
-//    int count= 0;
-//
-//    for(int i = 0; i < 100; i++) {
-//        cout << "Field Number: " << count << endl;
-//        cout << "\n" << endl;
-//        auto *gen = new PlayGround(6, -1);
-//        gen->generateField();
-//        gen->fillPlayGround();
-//        gen->printPlayGrounds();
-//        count++;
-//
-//   }
-//
-//}
+TEST(PlayGroundTest, test) {
+    int count= 1;
+
+    for(int i = 0; i < 100; i++) {
+        cout << "Field Number: " << count << endl;
+        cout << "\n" << endl;
+        auto *gen = new PlayGround(4, -1);
+        gen->generateField();
+        gen->fillPlayGround();
+        gen->printPlayGrounds();
+        count++;
+
+   }
+
+}
