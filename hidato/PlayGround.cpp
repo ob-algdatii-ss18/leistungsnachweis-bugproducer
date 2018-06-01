@@ -298,13 +298,29 @@ void PlayGround::generateUnsolvedPlayground() {
 
     }
 
+    for (int i = 2; i <= numberAddresses.size() - 2; i += 2) {
+        if (checkForSameNeighbours(numberAddresses[i + 1], numberAddresses[i - 1], playGroundSolved)) { //Magisches Viereck
+            if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundSolved)) { //Magisches Viereck
+                if (checkForSameNeighbours(numberAddresses[i-2], numberAddresses[i + 1], playGroundSolved)) { //Vorgänger Magisches sieht beide Felder
+                    int tmp = playGroundSolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize];
+                    playGroundUnsolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize] = tmp;
+                    i += 2;
+                }
+            }
+        }
+    }
 
 
-    for (int i = 0; i <= numberAddresses.size() - 3; i += 2) {
+
+    for (int i = 2; i <= numberAddresses.size() - 3; i += 2) {
         int test = numberAddresses[i];
         vector<int> tmp = calcNeighbours(numberAddresses[i], false, playGroundUnsolved);
-        if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundUnsolved) && checkForInLine(numberAddresses[i])) {
-            playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = 0;
+        if(!checkForSameNeighbours(numberAddresses[i+1], numberAddresses[i -1], playGroundSolved)) {
+            //checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundUnsolved)
+            if (
+                checkForInLine(numberAddresses[i])) {
+                playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = 0;
+            }
         }
     }
 
