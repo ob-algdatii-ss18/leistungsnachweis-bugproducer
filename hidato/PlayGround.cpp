@@ -52,7 +52,8 @@ void PlayGround::setStartPoint() {
     calcNeighbours(currentPosition, false, playGroundSolved);
 }
 
-vector<int> PlayGround::calcNeighbours(int position, bool isPlayGroundFilled, std::vector<std::vector<int>> playGroundSolved) {
+vector<int>
+PlayGround::calcNeighbours(int position, bool isPlayGroundFilled, std::vector<std::vector<int>> playGroundSolved) {
 
     neighbours.clear();
 
@@ -139,7 +140,8 @@ const vector<int> &PlayGround::getNeighbours() const {
     return neighbours;
 }
 
-void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                     std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position - fieldSize) / fieldSize).at((position - 1) % fieldSize) == 0) {
             neighbours.push_back(position - fieldSize - 1);
@@ -149,7 +151,8 @@ void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, bool isPlayGroundF
     }
 }
 
-void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                      std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position - fieldSize) / fieldSize).at((position + 1) % fieldSize) == 0) {
             neighbours.push_back(position - fieldSize + 1);
@@ -159,7 +162,8 @@ void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, bool isPlayGround
     }
 }
 
-void PlayGround::hasTopNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasTopNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                 std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position - fieldSize) / fieldSize).at(position % fieldSize) == 0) {
             neighbours.push_back(position - fieldSize);
@@ -169,7 +173,8 @@ void PlayGround::hasTopNeighbour(vector<int> &neighbours, bool isPlayGroundFille
     }
 }
 
-void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                        std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position + fieldSize) / fieldSize).at((position - 1) % fieldSize) == 0) {
             neighbours.push_back(position + fieldSize - 1);
@@ -179,7 +184,8 @@ void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, bool isPlayGrou
     }
 }
 
-void PlayGround::hasLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                  std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at(position / fieldSize).at((position - 1) % fieldSize) == 0) {
             neighbours.push_back(position - 1);
@@ -189,7 +195,8 @@ void PlayGround::hasLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFill
     }
 }
 
-void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                         std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position + fieldSize) / fieldSize).at((position + 1) % fieldSize) ==
             0) {
@@ -200,7 +207,8 @@ void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, bool isPlayGro
     }
 }
 
-void PlayGround::hasBottomNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasBottomNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                    std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position + fieldSize) / fieldSize).at(position % fieldSize) == 0) {
             neighbours.push_back(position + fieldSize);
@@ -210,7 +218,8 @@ void PlayGround::hasBottomNeighbour(vector<int> &neighbours, bool isPlayGroundFi
     }
 }
 
-void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
+                                   std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at(position / fieldSize).at((position + 1) % fieldSize) == 0) {
             neighbours.push_back(position + 1);
@@ -246,9 +255,9 @@ void PlayGround::fillPlayGround() {
         runCounter++;
         setStartPoint();
         fillPlayGround();
+    } else {
+        generateUnsolvedPlayground();
     }
-
-    generateUnsolvedPlayground();
 }
 
 void PlayGround::printPlayGrounds() {
@@ -288,45 +297,97 @@ void PlayGround::generateUnsolvedPlayground() {
     playGroundUnsolved = vector<vector<int >>(fieldSize, vector<int>(fieldSize));
 
 
-    // playGroundUnsolved[numberAddresses[0] / fieldSize][numberAddresses[0] % fieldSize] = 1;
+    playGroundUnsolved[numberAddresses[0] / fieldSize][numberAddresses[0] % fieldSize] = 1;
     playGroundUnsolved[numberAddresses[numberAddresses.size() - 1] / fieldSize][
             numberAddresses[numberAddresses.size() - 1] % fieldSize] = numberAddresses.size();
 
-    for (int i = 0; i <= numberAddresses.size() - 2; i += 2) {
-        int tmp = playGroundSolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize];
-        playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = tmp;
-
-    }
-
-    for (int i = 2; i <= numberAddresses.size() - 2; i += 2) {
-        if (checkForSameNeighbours(numberAddresses[i + 1], numberAddresses[i - 1], playGroundSolved)) { //Magisches Viereck
-            if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundSolved)) { //Magisches Viereck
-                if (checkForSameNeighbours(numberAddresses[i-2], numberAddresses[i + 1], playGroundSolved)) { //Vorgänger Magisches sieht beide Felder
-                    int tmp = playGroundSolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize];
-                    playGroundUnsolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize] = tmp;
-                    i += 2;
-                }
-            }
-        }
-    }
-
-
-
-    for (int i = 2; i <= numberAddresses.size() - 3; i += 2) {
-        int test = numberAddresses[i];
-        vector<int> tmp = calcNeighbours(numberAddresses[i], false, playGroundUnsolved);
-        if(!checkForSameNeighbours(numberAddresses[i+1], numberAddresses[i -1], playGroundSolved)) {
-            //checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundUnsolved)
-            if (
-                checkForInLine(numberAddresses[i])) {
-                playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = 0;
-            }
-        }
-    }
-
-
     for (int i = 0; i < fieldSize; i++) {
         for (int j = 0; j < fieldSize; j++) {
+            if ((i % 2 == 0) && (j % 2 == 0)) {
+                int tmp = playGroundSolved[i][j];
+                playGroundUnsolved[i][j] = tmp;
+            }
+            if ((i % 2 != 0) && (j % 2 != 0)) {
+                int tmp = playGroundSolved[i][j];
+                playGroundUnsolved[i][j] = tmp;
+            }
+        }
+    }
+
+
+//    for (int i = 0; i <= numberAddresses.size() - 2; i += 2) {
+//        int tmp = playGroundSolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize];
+//        playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = tmp;
+//    }
+//
+//
+//
+//    cout << "ZWSICHENERGEBNIS: \n\n\n" << endl;
+//
+//    for (int i = 0; i < fieldSize; i++) {
+//        for (int j = 0; j < fieldSize; j++) {
+//            cout << playGroundUnsolved[i][j] << "  ";
+//        }
+//        cout << endl;
+//    }
+//
+//    cout << "\n\n\n" << endl;
+//
+//
+//    for (int i = 0; i <= numberAddresses.size() - 2; i += 2) {
+//        if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundSolved)) {
+//            if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 3], playGroundSolved)) {
+//
+//                int countEmptyFields = 0;
+//                for (int j = i; j < i + 4; j++) {
+//                    if (playGroundUnsolved[numberAddresses[j] / fieldSize][numberAddresses[j] % fieldSize] == 0) {
+//                        countEmptyFields++;
+//                    }
+//                }
+//                //cout << "EMPTYFIELDS: " << countEmptyFields << endl;
+//                if (countEmptyFields == 3) {
+//                    int tmp = playGroundSolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize];
+//                    playGroundUnsolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize] = tmp;
+//                }
+//            }
+//        }
+//    }
+//
+//
+//    for (int i = 2; i <= numberAddresses.size() - 2; i += 2) {
+//        if (checkForSameNeighbours(numberAddresses[i + 1], numberAddresses[i - 1], playGroundSolved)) { //Magisches Viereck
+//            if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundSolved)) { //Magisches Viereck
+//                if (checkForSameNeighbours(numberAddresses[i - 2], numberAddresses[i + 1], playGroundSolved)) { //Vorgänger Magisches sieht beide Felder
+//                    int tmp = playGroundSolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize];
+//                    playGroundUnsolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize] = tmp;
+//                    i += 2;
+//                }
+//            }
+//        }
+//    }
+//
+//
+//    for (int i = 2; i <= numberAddresses.size() - 3; i += 2) {
+//        int test = numberAddresses[i];
+//        vector<int> tmp = calcNeighbours(numberAddresses[i], false, playGroundUnsolved);
+//        if (!checkForSameNeighbours(numberAddresses[i + 1], numberAddresses[i - 1], playGroundSolved)) {
+//            //checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundUnsolved)
+//            if (
+//                    checkForInLine(numberAddresses[i])) {
+//                playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = 0;
+//            }
+//        }
+//    }
+
+
+    for (
+            int i = 0;
+            i < fieldSize;
+            i++) {
+        for (
+                int j = 0;
+                j < fieldSize;
+                j++) {
             if (playGroundSolved[i][j] == 0) {
                 playGroundUnsolved[i][j] = -1;
             }
@@ -334,8 +395,14 @@ void PlayGround::generateUnsolvedPlayground() {
     }
 
 
-    for (int i = 0; i < fieldSize; i++) {
-        for (int j = 0; j < fieldSize; j++) {
+    for (
+            int i = 0;
+            i < fieldSize;
+            i++) {
+        for (
+                int j = 0;
+                j < fieldSize;
+                j++) {
             if (playGroundUnsolved[i][j] == 0) {
                 emptyCounter++;
             }

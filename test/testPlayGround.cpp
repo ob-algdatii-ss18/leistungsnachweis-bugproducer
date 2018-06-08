@@ -349,7 +349,7 @@ TEST(PlayGroundTest, test) {
     for(int i = 0; i < 100; i++) {
         cout << "Field Number: " << count << endl;
         cout << "\n" << endl;
-        auto *gen = new PlayGround(4, -1);
+        auto *gen = new PlayGround(5, -1);
         gen->generateField();
         gen->fillPlayGround();
         gen->printPlayGrounds();
