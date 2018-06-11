@@ -1,14 +1,13 @@
 #include "PlayGround.h"
-#include <vector>
 #include <cstdlib>
 #include <iostream>
 #include <random>
 #include <ctime>
 
 using namespace std;
-std::random_device rd;     // only used once to initialise (seed) engine
-std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-std::uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
+random_device rd;     // only used once to initialise (seed) engine
+mt19937 engine(rd());    // random-number engine used (Mersenne-Twister in this case)
+uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
 int emptyCounter = 0;
 
 
@@ -39,7 +38,7 @@ void PlayGround::setStartPoint() {
 
 
     srand((unsigned int) time(nullptr));
-    auto random_integer = uni(rng);
+    auto random_integer = uni(engine);
 
     if (isRandom == -1) {
         currentPosition = (random_integer % (fieldSize * fieldSize));
@@ -234,8 +233,8 @@ void PlayGround::fillPlayGround() {
     float densityCounter = 0;
 
     while (!getNeighbours().empty()) {
-        auto random_integer = uni(rng);
-        nextPosition = random_integer % getNeighbours().size();
+        int random_integer = uni(engine);
+        nextPosition = random_integer % (int)getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
         if (playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
             playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
@@ -299,7 +298,7 @@ void PlayGround::generateUnsolvedPlayground() {
 
     playGroundUnsolved[numberAddresses[0] / fieldSize][numberAddresses[0] % fieldSize] = 1;
     playGroundUnsolved[numberAddresses[numberAddresses.size() - 1] / fieldSize][
-            numberAddresses[numberAddresses.size() - 1] % fieldSize] = numberAddresses.size();
+            numberAddresses[numberAddresses.size() - 1] % fieldSize] = static_cast<int>(numberAddresses.size());
 
     for (int i = 0; i < fieldSize; i++) {
         for (int j = 0; j < fieldSize; j++) {
@@ -424,18 +423,15 @@ bool PlayGround::checkForInLine(int addr) {
     int counterhori = 0;
 
     // vertikal
-    for (int i = 0; i < neighbours.size(); i++) {
-        if (neighbours[i] == addr - fieldSize || neighbours[i] == addr + fieldSize) {
+    for (int neighbour : neighbours) {
+        if (neighbour == addr - fieldSize || neighbour == addr + fieldSize) {
             countervert++;
         }
     }
 
-
-
     //horizontal
-
-    for (int i = 0; i < neighbours.size(); i++) {
-        if (neighbours[i] == addr - 1 || neighbours[i] == addr + 1) {
+    for (int neighbour : neighbours) {
+        if (neighbour == addr - 1 || neighbour == addr + 1) {
             counterhori++;
         }
     }

@@ -315,15 +315,15 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
 
     filledPlaygroundDummy[0][0] = 1;
     filledPlaygroundDummy[0][1] = 0;
-    filledPlaygroundDummy[0][2] = 0;
+    filledPlaygroundDummy[0][2] = 3;
     filledPlaygroundDummy[0][3] = 0;
     filledPlaygroundDummy[1][3] = 5;
     filledPlaygroundDummy[1][2] = 0;
-    filledPlaygroundDummy[1][1] = 0;
+    filledPlaygroundDummy[1][1] = 7;
     filledPlaygroundDummy[1][0] = 0;
     filledPlaygroundDummy[2][0] = 9;
-    filledPlaygroundDummy[2][1] = 10;
-    filledPlaygroundDummy[2][2] = 0;
+    filledPlaygroundDummy[2][1] = 0;
+    filledPlaygroundDummy[2][2] = 11;
     filledPlaygroundDummy[2][3] = 0;
     filledPlaygroundDummy[3][3] = 13;
     filledPlaygroundDummy[3][2] = 0;
