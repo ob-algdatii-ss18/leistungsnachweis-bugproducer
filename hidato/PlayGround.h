@@ -9,22 +9,53 @@
 
 class PlayGround {
 public:
-    PlayGround(unsigned int, int);
+    /**
+     * Constructor for init the playground.
+     * @param fieldSize
+     * @param isRandom
+     */
+    PlayGround(unsigned int fieldSize, int isRandom);
 
     void generateField();
 
     int runCounter;
 
+    /**
+     * Get the solved playground.
+     * @return solved playground
+     */
     const std::vector<std::vector<int>> &getPlayGroundSolved() const;
 
+    /**
+     * Calculates the neighbours for a field.
+     * @param position current position of a field
+     * @param isPlaygroundFilled
+     * @return neighbours of a field
+     */
+    std::vector<int> calcNeighbours(int position, bool isPlaygroundFilled);
 
-
-    std::vector<int> calcNeighbours(int, bool);
-
+    /**
+     * Get neighbours.
+     * @return neighbours in a vector
+     */
     const std::vector<int> &getNeighbours() const;
+
+    /**
+     * Fills the playground with random numbers.
+     */
     void fillPlayGround();
+
     void printPlayGrounds();
+
+    /**
+     * Generates an unsolved playground from the solved playground.
+     */
     void generateUnsolvedPlayground();
+
+    /**
+     * Set a solved playground.
+     * @param playGroundSolved solved playground
+     */
     void setPlayGroundSolved(const std::vector<std::vector<int>> &playGroundSolved);
 
 private:
@@ -55,7 +86,7 @@ private:
 
 private:
 
-    void hasRightNeighbour(std::vector<int> &neighbours, bool, int ) const;
+    void hasRightNeighbour(std::vector<int> &neighbours, bool, int) const;
 
     void hasBottomNeighbour(std::vector<int> &neighbours, bool, int) const;
 
