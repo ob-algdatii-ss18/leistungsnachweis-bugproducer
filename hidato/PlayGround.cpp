@@ -10,7 +10,6 @@ mt19937 engine(rd());    // random-number engine used (Mersenne-Twister in this 
 uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
 int emptyCounter = 0;
 
-
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
     this->fieldSize = fieldSize;
     this->isRandom = isRandom;
@@ -440,7 +439,6 @@ bool PlayGround::checkForInLine(int addr) {
     return (counterhori == 2) || (countervert == 2) && ((counterhori + countervert) < 3);
 
 }
-
 
 bool PlayGround::checkForSameNeighbours(int addr1, int addr2, vector<std::vector<int>> pg) {
 

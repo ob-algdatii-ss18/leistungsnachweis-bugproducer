@@ -282,9 +282,7 @@ TEST(PlayGroundTest, shouldGenerateValidFilledPlayGround) {
             int address = neighbours[j];
             if (filledPlayground[address / FIELDSIZE][address % FIELDSIZE] == i + 2) {
                 hasCorrectNeighbour = true;
-
             }
-
         }
         ASSERT_TRUE(hasCorrectNeighbour);
     }
