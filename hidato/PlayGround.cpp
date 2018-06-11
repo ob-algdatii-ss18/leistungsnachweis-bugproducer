@@ -5,9 +5,9 @@
 #include <ctime>
 
 using namespace std;
-random_device rd;     // only used once to initialise (seed) engine
-mt19937 engine(rd());    // random-number engine used (Mersenne-Twister in this case)
-uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
+random_device rd;     // only used once to initialise (seed) engine // NOLINT
+mt19937 engine(rd());    // random-number engine used (Mersenne-Twister in this case) // NOLINT
+uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased // NOLINT
 int emptyCounter = 0;
 
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
