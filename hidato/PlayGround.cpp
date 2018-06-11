@@ -410,7 +410,7 @@ void PlayGround::generateUnsolvedPlayground() {
 
 }
 
-bool PlayGround::checkForInLine(int addr) {
+/*bool PlayGround::checkForInLine(int addr) {
 
     vector<int> neighbours = calcNeighbours(addr, false, playGroundUnsolved);
 
@@ -450,7 +450,7 @@ bool PlayGround::checkForSameNeighbours(int addr1, int addr2, vector<std::vector
     }
     return false;
 
-}
+}*/
 
 void PlayGround::setPlayGroundSolved(const vector<vector<int>> &playGroundSolved) {
     PlayGround::playGroundSolved = playGroundSolved;
