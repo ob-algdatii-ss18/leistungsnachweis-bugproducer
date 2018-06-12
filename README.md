@@ -7,4 +7,4 @@
 
 [Github Pages](https://ob-algdatii-ss18.github.io/leistungsnachweis-bugproducer/)
 
-[Doxygen Documentaion](https://ob-algdatii-ss18.github.io/leistungsnachweis-bugproducer/doxygen/html/index.html)
+[Doxygen Documentaion](https://ob-algdatii-ss18.github.io/leistungsnachweis-bugproducer/doxygen/html/)
