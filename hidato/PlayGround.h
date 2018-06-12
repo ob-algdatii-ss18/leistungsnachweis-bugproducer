@@ -7,6 +7,9 @@
 
 #include <vector>
 
+/**
+ * Class for the playground.
+ */
 class PlayGround {
 public:
     /**
@@ -34,9 +37,10 @@ public:
      * Calculates the neighbours for a field.
      * @param position current position of a field
      * @param isPlaygroundFilled
+     * @param playgroundSolved solved playground
      * @return neighbours of a field
      */
-    std::vector<int> calcNeighbours(int, bool, std::vector<std::vector<int>>);
+    std::vector<int> calcNeighbours(int position, bool isPlaygroundFilled, std::vector<std::vector<int>> playgroundSolved);
 
     /**
      * Get the addresses of the number.
