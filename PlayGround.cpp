@@ -6,10 +6,10 @@
 #include <ctime>
 
 using namespace std;
-
 std::random_device rd;     // only used once to initialise (seed) engine
 std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
 std::uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased
+int emptyCounter = 0;
 
 
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
@@ -18,7 +18,6 @@ PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
     this->runCounter = 1;
 
 }
-
 
 void PlayGround::generateField() {
 
@@ -31,12 +30,6 @@ void PlayGround::generateField() {
     }
 
     setStartPoint();
-
-
-/*
-    for (unsigned int i = 0; i < getNeighbours().size(); i++) {
-        cout << calcNeighbours().at(i) << "\n";
-    }*/
 }
 
 void PlayGround::setStartPoint() {
@@ -45,11 +38,11 @@ void PlayGround::setStartPoint() {
     numberAddresses = vector<int>();
 
 
-    srand((unsigned int) time(0));
-
+    srand((unsigned int) time(nullptr));
+    auto random_integer = uni(rng);
 
     if (isRandom == -1) {
-        currentPosition = (rand() % (fieldSize * fieldSize));
+        currentPosition = (random_integer % (fieldSize * fieldSize));
     } else {
         currentPosition = isRandom;
     }
@@ -58,7 +51,6 @@ void PlayGround::setStartPoint() {
     numberAddresses.push_back(currentPosition);
     calcNeighbours(currentPosition, false);
 }
-
 
 vector<int> PlayGround::calcNeighbours(int position, bool isPlayGroundFilled) {
 
@@ -228,12 +220,11 @@ void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFil
     }
 }
 
-
 void PlayGround::fillPlayGround() {
     int nextPosition = 0;
     float densityCounter = 0;
 
-    while (getNeighbours().size() != 0) {
+    while (!getNeighbours().empty()) {
         auto random_integer = uni(rng);
         nextPosition = random_integer % getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
@@ -279,16 +270,20 @@ void PlayGround::printPlayGrounds() {
 
     cout << "\n\n\n" << endl;
 
-    for (int i = 0; i < numberAddresses.size(); i++) {
-        cout << numberAddresses[i] << " ";
+    for (int numberAddresse : numberAddresses) {
+        cout << numberAddresse << " ";
 
     }
-    cout << endl << "Anzahl der Durchlaeufe: " << runCounter;
+    cout << endl << "Anzahl der Durchlaeufe: " << runCounter << endl;
+    cout << endl << "Empty Fields: " << emptyCounter << endl;
+    cout << endl << "------------------------------------------------------ " << endl;
 
 
 }
 
 void PlayGround::generateUnsolvedPlayground() {
+    emptyCounter = 0;
+
 
     playGroundUnsolved = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
     int deleteMarker = 9;
@@ -314,8 +309,12 @@ void PlayGround::generateUnsolvedPlayground() {
                 int temp = playGroundSolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize];
                 playGroundUnsolved[numberAddresses[i + 1] / fieldSize][numberAddresses[i + 1] % fieldSize] = temp;
             }
-            i++;
+            if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 3])) {
+                int temp = playGroundSolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize];
+                playGroundUnsolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize] = temp;
+            }
         }
+
     }
 
     for (int i = 0; i < fieldSize; i++) {
@@ -325,6 +324,16 @@ void PlayGround::generateUnsolvedPlayground() {
             }
         }
     }
+
+    for (int i = 0; i < fieldSize; i++) {
+        for (int j = 0; j < fieldSize; j++) {
+            if (playGroundUnsolved[i][j] == 0) {
+                emptyCounter++;
+            }
+        }
+    }
+
+
 }
 
 bool PlayGround::checkForSameNeighbours(int addr1, int addr2) {
@@ -347,11 +356,9 @@ const vector<vector<int>> &PlayGround::getPlayGroundSolved() const {
     return playGroundSolved;
 }
 
-
 const vector<int> &PlayGround::getNumberAddresses() const {
     return numberAddresses;
 }
-
 
 void PlayGround::setNumberAddresses(const vector<int> &numberAddresses) {
     PlayGround::numberAddresses = numberAddresses;
@@ -360,5 +367,8 @@ void PlayGround::setNumberAddresses(const vector<int> &numberAddresses) {
 const vector<vector<int>> &PlayGround::getPlayGroundUnsolved() const {
     return playGroundUnsolved;
 }
+
+
+
 
 

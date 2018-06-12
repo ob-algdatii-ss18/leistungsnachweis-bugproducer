@@ -37,7 +37,7 @@ void Hidato4x4::checkSolution()
                 playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
                 playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
             }else{
-                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt() == -1){
+                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit4x4[i*4+j]->toPlainText() == "X"){
                     playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
                     playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
                 }else{
@@ -72,12 +72,18 @@ void Hidato4x4::createNewPlayGround(){
             playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::black);
             playGroundQTextEdit4x4[i*4+j]->setReadOnly(false);
 
-            if(playground->getPlayGroundUnsolved()[i][j] != 0){
+            if(playground->getPlayGroundUnsolved()[i][j] > 0){
                 playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::blue);
                 playGroundQTextEdit4x4[i*4+j]->setText(QString::number(playground->getPlayGroundUnsolved()[i][j]));
                 playGroundQTextEdit4x4[i*4+j]->setReadOnly(true);
+            }
+            else if(playground->getPlayGroundUnsolved()[i][j] == -1){
+                playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::blue);
+                playGroundQTextEdit4x4[i*4+j]->setText("X");
+                playGroundQTextEdit4x4[i*4+j]->setReadOnly(true);
 
-            }else {
+            }
+            else {
                 playGroundQTextEdit4x4[i*4+j]->clear();
             }
             playGroundQTextEdit4x4[i*4+j]->setAlignment(Qt::AlignCenter);
