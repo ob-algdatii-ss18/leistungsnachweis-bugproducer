@@ -10,7 +10,7 @@ Das Ziel ist es, die leeren Felder sollen so auszufüllen, dass sich eine Kette 
 #### Beispiel
 ![Hidato Example](https://www.puzzlesandbrains.com/imagesmall/hidato/0606HidatoEasy1and2.gif)
 
-Quelle: https://www.puzzlesandbrains.com/Hidatomain.php
+[Quelle](https://www.puzzlesandbrains.com/Hidatomain.php)
 
 #### Doxygen
 [Dokumentation](https://ob-algdatii-ss18.github.io/leistungsnachweis-bugproducer/doxygen/html/)
