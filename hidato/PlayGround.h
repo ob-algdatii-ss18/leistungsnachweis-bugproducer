@@ -30,20 +30,22 @@ public:
      * @param isPlaygroundFilled
      * @return neighbours of a field
      */
-    std::vector<int> calcNeighbours(int position, bool isPlaygroundFilled);
+    std::vector<int> calcNeighbours(int, bool, std::vector<std::vector<int>>);
 
     /**
      * Get neighbours.
      * @return neighbours in a vector
      */
     const std::vector<int> &getNumberAddresses() const;
+
     const std::vector<int> &getNeighbours() const;
 
-    /**
-     * Fills the playground with random numbers.
-     */
 
     void generateField();
+
+    /**
+    * Fills the playground with random numbers.
+    */
     void fillPlayGround();
 
     void printPlayGrounds();
@@ -58,8 +60,9 @@ public:
      * @param playGroundSolved solved playground
      */
     void setPlayGroundSolved(const std::vector<std::vector<int>> &playGroundSolved);
-    std::vector<int> calcNeighbours(int, bool,std::vector<std::vector<int>>);
+
     void setNumberAddresses(const std::vector<int> &numberAddresses);
+
     const std::vector<std::vector<int>> &getPlayGroundUnsolved() const;
 
 private:
@@ -75,14 +78,22 @@ private:
     int fieldCounter;
 
     void setStartPoint();
-    void hasRightNeighbour(std::vector<int> &neighbours, bool, int ,std::vector<std::vector<int>>) const;
-    void hasBottomNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
-    void hasBottomRightNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
-    void hasLeftNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
-    void hasBottomLeftNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
-    void hasTopNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
-    void hasTopRightNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
-    void hasTopLeftNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
+
+    void hasRightNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    void hasBottomNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    void hasBottomRightNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    void hasLeftNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    void hasBottomLeftNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    void hasTopNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    void hasTopRightNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    void hasTopLeftNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
 
 };
 
