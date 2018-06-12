@@ -337,20 +337,3 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
 
     ASSERT_EQ(unsolvedPlayground, filledPlaygroundDummy);
 }
-
-
-//TEST(PlayGroundTest, test) {
-//    int count= 1;
-//
-//    for(int i = 0; i < 100; i++) {
-//        cout << "Field Number: " << count << endl;
-//        cout << "\n" << endl;
-//        auto *gen = new PlayGround(5, -1);
-//        gen->generatePlayground();
-//        gen->fillPlayGround();
-//        gen->printPlayGrounds();
-//        count++;
-//
-//   }
-//
-//}
