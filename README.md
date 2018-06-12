@@ -6,4 +6,4 @@
 
 # Doxygen
 
-[![Documentation](leistungsnachweis-bugproducer/doxygen/html/index.html)]
+[![Documentation](https://ob-algdatii-ss18.github.io/leistungsnachweis-bugproducer/)]
