@@ -5,7 +5,6 @@
 #include "testPlayGround.h"
 
 using namespace std;
-
 static const int FIELDSIZE = 4;
 
 
@@ -333,7 +332,6 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
     gen->setPlayGroundSolved(filledPlayground);
     gen->setNumberAddresses(numberAddresses);
     gen->generateUnsolvedPlayground();
-    gen->printPlayGrounds();
 
     vector<vector<int>> unsolvedPlayground = gen->getPlayGroundUnsolved();
 

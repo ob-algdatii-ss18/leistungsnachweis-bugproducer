@@ -258,35 +258,6 @@ void PlayGround::fillPlayGround() {
     }
 }
 
-void PlayGround::printPlayGrounds() {
-    for (int i = 0; i < fieldSize; i++) {
-        for (int j = 0; j < fieldSize; j++) {
-            cout << playGroundSolved[i][j] << "  ";
-        }
-        cout << endl;
-    }
-
-    cout << "\n\n\n" << endl;
-
-    for (int i = 0; i < fieldSize; i++) {
-        for (int j = 0; j < fieldSize; j++) {
-            cout << playGroundUnsolved[i][j] << "  ";
-        }
-        cout << endl;
-    }
-
-    cout << "\n\n\n" << endl;
-
-    for (int numberAddresse : numberAddresses) {
-        cout << numberAddresse << " ";
-
-    }
-    cout << endl << "Anzahl der Durchlaeufe: " << runCounter << endl;
-    cout << endl << "Empty Fields: " << emptyCounter << endl;
-    cout << endl << "------------------------------------------------------ " << endl;
-
-
-}
 
 void PlayGround::generateUnsolvedPlayground() {
     emptyCounter = 0;
@@ -311,71 +282,6 @@ void PlayGround::generateUnsolvedPlayground() {
             }
         }
     }
-
-
-//    for (int i = 0; i <= numberAddresses.size() - 2; i += 2) {
-//        int tmp = playGroundSolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize];
-//        playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = tmp;
-//    }
-//
-//
-//
-//    cout << "ZWSICHENERGEBNIS: \n\n\n" << endl;
-//
-//    for (int i = 0; i < fieldSize; i++) {
-//        for (int j = 0; j < fieldSize; j++) {
-//            cout << playGroundUnsolved[i][j] << "  ";
-//        }
-//        cout << endl;
-//    }
-//
-//    cout << "\n\n\n" << endl;
-//
-//
-//    for (int i = 0; i <= numberAddresses.size() - 2; i += 2) {
-//        if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundSolved)) {
-//            if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 3], playGroundSolved)) {
-//
-//                int countEmptyFields = 0;
-//                for (int j = i; j < i + 4; j++) {
-//                    if (playGroundUnsolved[numberAddresses[j] / fieldSize][numberAddresses[j] % fieldSize] == 0) {
-//                        countEmptyFields++;
-//                    }
-//                }
-//                //cout << "EMPTYFIELDS: " << countEmptyFields << endl;
-//                if (countEmptyFields == 3) {
-//                    int tmp = playGroundSolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize];
-//                    playGroundUnsolved[numberAddresses[i + 3] / fieldSize][numberAddresses[i + 3] % fieldSize] = tmp;
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    for (int i = 2; i <= numberAddresses.size() - 2; i += 2) {
-//        if (checkForSameNeighbours(numberAddresses[i + 1], numberAddresses[i - 1], playGroundSolved)) { //Magisches Viereck
-//            if (checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundSolved)) { //Magisches Viereck
-//                if (checkForSameNeighbours(numberAddresses[i - 2], numberAddresses[i + 1], playGroundSolved)) { //Vorgänger Magisches sieht beide Felder
-//                    int tmp = playGroundSolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize];
-//                    playGroundUnsolved[numberAddresses[i - 1] / fieldSize][numberAddresses[i - 1] % fieldSize] = tmp;
-//                    i += 2;
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    for (int i = 2; i <= numberAddresses.size() - 3; i += 2) {
-//        int test = numberAddresses[i];
-//        vector<int> tmp = calcNeighbours(numberAddresses[i], false, playGroundUnsolved);
-//        if (!checkForSameNeighbours(numberAddresses[i + 1], numberAddresses[i - 1], playGroundSolved)) {
-//            //checkForSameNeighbours(numberAddresses[i], numberAddresses[i + 2], playGroundUnsolved)
-//            if (
-//                    checkForInLine(numberAddresses[i])) {
-//                playGroundUnsolved[numberAddresses[i] / fieldSize][numberAddresses[i] % fieldSize] = 0;
-//            }
-//        }
-//    }
 
 
     for (
@@ -407,50 +313,8 @@ void PlayGround::generateUnsolvedPlayground() {
         }
     }
 
-
 }
 
-/*bool PlayGround::checkForInLine(int addr) {
-
-    vector<int> neighbours = calcNeighbours(addr, false, playGroundUnsolved);
-
-    if (neighbours.size() < 2) {
-        return false;
-    }
-
-    int countervert = 0;
-    int counterhori = 0;
-
-    // vertikal
-    for (int neighbour : neighbours) {
-        if (neighbour == addr - fieldSize || neighbour == addr + fieldSize) {
-            countervert++;
-        }
-    }
-
-    //horizontal
-    for (int neighbour : neighbours) {
-        if (neighbour == addr - 1 || neighbour == addr + 1) {
-            counterhori++;
-        }
-    }
-
-
-    return (counterhori == 2) || (countervert == 2) && ((counterhori + countervert) < 3);
-
-}
-
-bool PlayGround::checkForSameNeighbours(int addr1, int addr2, vector<std::vector<int>> pg) {
-
-    vector<int> one = calcNeighbours(addr1, true, pg);
-
-    for (int elem : one) {
-        if (elem == addr2)
-            return true;
-    }
-    return false;
-
-}*/
 
 void PlayGround::setPlayGroundSolved(const vector<vector<int>> &playGroundSolved) {
     PlayGround::playGroundSolved = playGroundSolved;

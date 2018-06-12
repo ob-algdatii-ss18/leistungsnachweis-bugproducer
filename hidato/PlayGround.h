@@ -18,7 +18,6 @@ public:
 
     void generateField();
     void fillPlayGround();
-    void printPlayGrounds();
     void generateUnsolvedPlayground();
     void setPlayGroundSolved(const std::vector<std::vector<int>> &playGroundSolved);
     std::vector<int> calcNeighbours(int, bool,std::vector<std::vector<int>>);
@@ -38,8 +37,6 @@ private:
     int fieldCounter;
 
     void setStartPoint();
-    bool checkForSameNeighbours(int, int,std::vector<std::vector<int>>);
-    bool checkForInLine(int);
     void hasRightNeighbour(std::vector<int> &neighbours, bool, int ,std::vector<std::vector<int>>) const;
     void hasBottomNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
     void hasBottomRightNeighbour(std::vector<int> &neighbours, bool, int,std::vector<std::vector<int>>) const;
