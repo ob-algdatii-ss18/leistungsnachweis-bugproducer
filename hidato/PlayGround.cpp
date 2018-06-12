@@ -17,7 +17,7 @@ PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
 
 }
 
-void PlayGround::generateField() {
+void PlayGround::generatePlayground() {
 
     playGroundSolved = vector<vector<int >>(fieldSize, vector<int>(fieldSize));
 
