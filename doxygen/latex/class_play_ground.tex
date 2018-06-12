@@ -1,0 +1,122 @@
+\hypertarget{class_play_ground}{}\section{Play\+Ground Class Reference}
+\label{class_play_ground}\index{Play\+Ground@{Play\+Ground}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_play_ground_ae6968b32015b5d0a0c60ca95f9f48271}{Play\+Ground}} (unsigned int field\+Size, int is\+Random)
+\item 
+\mbox{\Hypertarget{class_play_ground_a087688b8e6e3eaba66689e78cce14f9c}\label{class_play_ground_a087688b8e6e3eaba66689e78cce14f9c}} 
+void {\bfseries generate\+Field} ()
+\item 
+const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \& \mbox{\hyperlink{class_play_ground_a55585e6f5f0e35ce813a8b3443c46a1d}{get\+Play\+Ground\+Solved}} () const
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_play_ground_aafba04cef3f1fb053b64dba6b613ed59}{calc\+Neighbours}} (int position, bool is\+Playground\+Filled)
+\item 
+const std\+::vector$<$ int $>$ \& \mbox{\hyperlink{class_play_ground_a89330b39ecc7db7b8620c2c4914ff0f2}{get\+Neighbours}} () const
+\item 
+void \mbox{\hyperlink{class_play_ground_aea7c340233c4bf09b5fdc780090aea3e}{fill\+Play\+Ground}} ()
+\item 
+\mbox{\Hypertarget{class_play_ground_a5b7a8d09a03943b4c6657d6f8ec04f5f}\label{class_play_ground_a5b7a8d09a03943b4c6657d6f8ec04f5f}} 
+void {\bfseries print\+Play\+Grounds} ()
+\item 
+void \mbox{\hyperlink{class_play_ground_a80ec139301e7dfcb94030b9ee518349c}{generate\+Unsolved\+Playground}} ()
+\item 
+void \mbox{\hyperlink{class_play_ground_a76a962fedfcfdfc5dd7764712d8bd058}{set\+Play\+Ground\+Solved}} (const std\+::vector$<$ std\+::vector$<$ int $>$$>$ \&play\+Ground\+Solved)
+\item 
+\mbox{\Hypertarget{class_play_ground_a24340f7041408d6cfaea13e5e1b1a07b}\label{class_play_ground_a24340f7041408d6cfaea13e5e1b1a07b}} 
+const std\+::vector$<$ int $>$ \& {\bfseries get\+Number\+Addresses} () const
+\item 
+\mbox{\Hypertarget{class_play_ground_a0f5e54e8de3696f3ab2da2bffe9ecc10}\label{class_play_ground_a0f5e54e8de3696f3ab2da2bffe9ecc10}} 
+void {\bfseries set\+Number\+Addresses} (const std\+::vector$<$ int $>$ \&number\+Addresses)
+\item 
+\mbox{\Hypertarget{class_play_ground_a5123a4f227c115ef67f04aca07ca4599}\label{class_play_ground_a5123a4f227c115ef67f04aca07ca4599}} 
+const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \& {\bfseries get\+Play\+Ground\+Unsolved} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_play_ground_aa5b4367596442cbdaf8c2947d7dfd82d}\label{class_play_ground_aa5b4367596442cbdaf8c2947d7dfd82d}} 
+int {\bfseries run\+Counter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_play_ground_ae6968b32015b5d0a0c60ca95f9f48271}\label{class_play_ground_ae6968b32015b5d0a0c60ca95f9f48271}} 
+\index{Play\+Ground@{Play\+Ground}!Play\+Ground@{Play\+Ground}}
+\index{Play\+Ground@{Play\+Ground}!Play\+Ground@{Play\+Ground}}
+\subsubsection{\texorpdfstring{Play\+Ground()}{PlayGround()}}
+{\footnotesize\ttfamily Play\+Ground\+::\+Play\+Ground (\begin{DoxyParamCaption}\item[{unsigned int}]{field\+Size,  }\item[{int}]{is\+Random }\end{DoxyParamCaption})}
+
+Constructor for init the playground. 
+\begin{DoxyParams}{Parameters}
+{\em field\+Size} & \\
+\hline
+{\em is\+Random} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_play_ground_aafba04cef3f1fb053b64dba6b613ed59}\label{class_play_ground_aafba04cef3f1fb053b64dba6b613ed59}} 
+\index{Play\+Ground@{Play\+Ground}!calc\+Neighbours@{calc\+Neighbours}}
+\index{calc\+Neighbours@{calc\+Neighbours}!Play\+Ground@{Play\+Ground}}
+\subsubsection{\texorpdfstring{calc\+Neighbours()}{calcNeighbours()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Play\+Ground\+::calc\+Neighbours (\begin{DoxyParamCaption}\item[{int}]{position,  }\item[{bool}]{is\+Playground\+Filled }\end{DoxyParamCaption})}
+
+Calculates the neighbours for a field. 
+\begin{DoxyParams}{Parameters}
+{\em position} & current position of a field \\
+\hline
+{\em is\+Playground\+Filled} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+neighbours of a field 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_play_ground_aea7c340233c4bf09b5fdc780090aea3e}\label{class_play_ground_aea7c340233c4bf09b5fdc780090aea3e}} 
+\index{Play\+Ground@{Play\+Ground}!fill\+Play\+Ground@{fill\+Play\+Ground}}
+\index{fill\+Play\+Ground@{fill\+Play\+Ground}!Play\+Ground@{Play\+Ground}}
+\subsubsection{\texorpdfstring{fill\+Play\+Ground()}{fillPlayGround()}}
+{\footnotesize\ttfamily void Play\+Ground\+::fill\+Play\+Ground (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fills the playground with random numbers. \mbox{\Hypertarget{class_play_ground_a80ec139301e7dfcb94030b9ee518349c}\label{class_play_ground_a80ec139301e7dfcb94030b9ee518349c}} 
+\index{Play\+Ground@{Play\+Ground}!generate\+Unsolved\+Playground@{generate\+Unsolved\+Playground}}
+\index{generate\+Unsolved\+Playground@{generate\+Unsolved\+Playground}!Play\+Ground@{Play\+Ground}}
+\subsubsection{\texorpdfstring{generate\+Unsolved\+Playground()}{generateUnsolvedPlayground()}}
+{\footnotesize\ttfamily void Play\+Ground\+::generate\+Unsolved\+Playground (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Generates an unsolved playground from the solved playground. \mbox{\Hypertarget{class_play_ground_a89330b39ecc7db7b8620c2c4914ff0f2}\label{class_play_ground_a89330b39ecc7db7b8620c2c4914ff0f2}} 
+\index{Play\+Ground@{Play\+Ground}!get\+Neighbours@{get\+Neighbours}}
+\index{get\+Neighbours@{get\+Neighbours}!Play\+Ground@{Play\+Ground}}
+\subsubsection{\texorpdfstring{get\+Neighbours()}{getNeighbours()}}
+{\footnotesize\ttfamily const vector$<$ int $>$ \& Play\+Ground\+::get\+Neighbours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get neighbours. \begin{DoxyReturn}{Returns}
+neighbours in a vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_play_ground_a55585e6f5f0e35ce813a8b3443c46a1d}\label{class_play_ground_a55585e6f5f0e35ce813a8b3443c46a1d}} 
+\index{Play\+Ground@{Play\+Ground}!get\+Play\+Ground\+Solved@{get\+Play\+Ground\+Solved}}
+\index{get\+Play\+Ground\+Solved@{get\+Play\+Ground\+Solved}!Play\+Ground@{Play\+Ground}}
+\subsubsection{\texorpdfstring{get\+Play\+Ground\+Solved()}{getPlayGroundSolved()}}
+{\footnotesize\ttfamily const vector$<$ vector$<$ int $>$ $>$ \& Play\+Ground\+::get\+Play\+Ground\+Solved (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the solved playground. \begin{DoxyReturn}{Returns}
+solved playground 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_play_ground_a76a962fedfcfdfc5dd7764712d8bd058}\label{class_play_ground_a76a962fedfcfdfc5dd7764712d8bd058}} 
+\index{Play\+Ground@{Play\+Ground}!set\+Play\+Ground\+Solved@{set\+Play\+Ground\+Solved}}
+\index{set\+Play\+Ground\+Solved@{set\+Play\+Ground\+Solved}!Play\+Ground@{Play\+Ground}}
+\subsubsection{\texorpdfstring{set\+Play\+Ground\+Solved()}{setPlayGroundSolved()}}
+{\footnotesize\ttfamily void Play\+Ground\+::set\+Play\+Ground\+Solved (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int $>$$>$ \&}]{play\+Ground\+Solved }\end{DoxyParamCaption})}
+
+Set a solved playground. 
+\begin{DoxyParams}{Parameters}
+{\em play\+Ground\+Solved} & solved playground \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+hidato/Play\+Ground.\+h\item 
+hidato/Play\+Ground.\+cpp\end{DoxyCompactItemize}
