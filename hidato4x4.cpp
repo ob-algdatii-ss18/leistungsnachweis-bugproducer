@@ -62,7 +62,7 @@ void Hidato4x4::newGame()
 }
 
 void Hidato4x4::createNewPlayGround(){
-    playground->generateField();
+    playground->generatePlayground();
     playground->fillPlayGround();
 
 

@@ -106,7 +106,7 @@ void Hidato6x6::back(){
 
 void Hidato6x6::createNewPlayGround()
 {
-    playground->generateField();
+    playground->generatePlayground();
     playground->fillPlayGround();
 
 

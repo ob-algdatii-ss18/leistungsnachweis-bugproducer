@@ -59,7 +59,7 @@ void Hidato5x5::newGame()
 }
 
 void Hidato5x5::createNewPlayGround(){
-    playground->generateField();
+    playground->generatePlayground();
     playground->fillPlayGround();
 
 
