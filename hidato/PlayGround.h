@@ -21,6 +21,7 @@ public:
 
     int runCounter;
 
+
     /**
      * Get the solved playground.
      * @return solved playground
@@ -32,6 +33,13 @@ public:
      * @param playGroundSolved solved playground
     */
     void setPlayGroundSolved(const std::vector<std::vector<int>> &playGroundSolved);
+
+    /**
+   * Set a unsolved playground.
+   * @param playGroundUnsolved unsolved playground
+  */
+    void setPlayGroundUnsolved(const std::vector<std::vector<int>> &playGroundUnsolved);
+
 
     /**
      * Calculates the neighbours for a field.
@@ -81,15 +89,25 @@ public:
      */
     const std::vector<std::vector<int>> &getPlayGroundUnsolved() const;
 
+    bool checkSolution();
+
     void printPlayGrounds();
+
+    void setDensityCounter(float densityCounter);
 
 private:
 
     std::vector<std::vector<int>> playGroundSolved;
     std::vector<std::vector<int>> playGroundUnsolved;
+    std::vector<std::vector<int>> playGroundPlayerSolution;
+public:
+    void setPlayGroundPlayerSolution(const std::vector<std::vector<int>> &playGroundPlayerSolution);
+
+private:
     std::vector<int> neighbours;
     std::vector<int> numberAddresses;
 
+    float densityCounter = 0;
     unsigned int fieldSize;
     int currentPosition;
     int isRandom;
@@ -147,6 +165,9 @@ private:
      * @param neighbours vector with the neighbours
      */
     void hasTopLeftNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    bool checkForSameNeighbours(int addr1, int addr2, std::vector<std::vector<int>> pg);
+
 
 };
 

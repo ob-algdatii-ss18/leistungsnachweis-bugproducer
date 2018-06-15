@@ -337,3 +337,73 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
 
     ASSERT_EQ(unsolvedPlayground, filledPlaygroundDummy);
 }
+
+
+TEST(PlayGroundTest, shouldCheckValidSolution) {
+    auto *gen = new PlayGround(4, 0);
+    vector<vector<int>> filledPlayground = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
+    vector<vector<int>> filledPlayground1 = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
+
+    filledPlayground[0][0] = 1;
+    filledPlayground[0][1] = 2;
+    filledPlayground[0][2] = 3;
+    filledPlayground[0][3] = 4;
+    filledPlayground[1][3] = 5;
+    filledPlayground[1][2] = 6;
+    filledPlayground[1][1] = 7;
+    filledPlayground[1][0] = 8;
+    filledPlayground[2][0] = 9;
+    filledPlayground[2][1] = 10;
+    filledPlayground[2][2] = 11;
+    filledPlayground[2][3] = 12;
+    filledPlayground[3][3] = 13;
+    filledPlayground[3][2] = 14;
+    filledPlayground[3][1] = 15;
+    filledPlayground[3][0] = 0;
+
+    filledPlayground1[0][0] = 1;
+    filledPlayground1[0][1] = 2;
+    filledPlayground1[0][2] = 3;
+    filledPlayground1[0][3] = 4;
+    filledPlayground1[1][3] = 5;
+    filledPlayground1[1][2] = 6;
+    filledPlayground1[1][1] = 7;
+    filledPlayground1[1][0] = 8;
+    filledPlayground1[2][0] = 9;
+    filledPlayground1[2][1] = 10;
+    filledPlayground1[2][2] = 11;
+    filledPlayground1[2][3] = 12;
+    filledPlayground1[3][3] = 13;
+    filledPlayground1[3][2] = 14;
+    filledPlayground1[3][1] = 15;
+    filledPlayground1[3][0] = 0;
+
+
+
+    vector<int> numberAddresses {0,1,2,3,7,6,5,4,8,9,10,11,15,14,13};
+
+    gen->setPlayGroundSolved(filledPlayground);
+
+    gen->setDensityCounter(15);
+
+
+    gen->setPlayGroundPlayerSolution(filledPlayground1);
+
+    vector<vector<int>> unsolvedPlayground = gen->getPlayGroundUnsolved();
+
+    ASSERT_TRUE(gen->checkSolution());
+}
+
+//TEST(PlayGroundTest, test) {
+//
+//    for(int i = 0; i < 100; i++) {
+//        cout << "\n" << endl;
+//        auto *gen = new PlayGround(4, -1);
+//        gen->generatePlayground();
+//        gen->fillPlayGround();
+//        gen->printPlayGrounds();
+//
+//
+//    }
+//
+//}
