@@ -4,7 +4,7 @@
 #include <random>
 #include <ctime>
 #include <map>
-#include <boost_1_67_0/boost/random.hpp>
+#include <boost/random.hpp>
 
 using namespace std;
 std::time_t now = std::time(0);
