@@ -327,14 +327,3 @@ void PlayGround::setDensityCounter(float densityCounter) {
 void PlayGround::setPlayGroundPlayerSolution(const vector<vector<int>> &playGroundPlayerSolution) {
     PlayGround::playGroundPlayerSolution = playGroundPlayerSolution;
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -5,6 +5,12 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(hidato)
 
+# Set true if run local
+if(false)
+    set(Boost_INCLUDE_DIR c:/mingw/include/boost_1_67_0)
+    set(Boost_LIBRARY_DIR C:/MinGW/include/boost_1_67_0/libs)
+    include_directories(${Boost_INCLUDE_DIR})
+endif()
 
 # GoogleTest
 
