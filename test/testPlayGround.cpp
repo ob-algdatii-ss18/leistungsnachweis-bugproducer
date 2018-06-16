@@ -1,7 +1,3 @@
-//
-// Created by mark on 16.04.2018.
-//
-
 #include "testPlayGround.h"
 
 using namespace std;
@@ -312,15 +308,15 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
 
     filledPlaygroundDummy[0][0] = 1;
     filledPlaygroundDummy[0][1] = 0;
-    filledPlaygroundDummy[0][2] = 3;
+    filledPlaygroundDummy[0][2] = 0;
     filledPlaygroundDummy[0][3] = 0;
-    filledPlaygroundDummy[1][3] = 5;
+    filledPlaygroundDummy[1][3] = 0;
     filledPlaygroundDummy[1][2] = 0;
     filledPlaygroundDummy[1][1] = 7;
     filledPlaygroundDummy[1][0] = 0;
-    filledPlaygroundDummy[2][0] = 9;
+    filledPlaygroundDummy[2][0] = 0;
     filledPlaygroundDummy[2][1] = 0;
-    filledPlaygroundDummy[2][2] = 11;
+    filledPlaygroundDummy[2][2] = 0;
     filledPlaygroundDummy[2][3] = 0;
     filledPlaygroundDummy[3][3] = 13;
     filledPlaygroundDummy[3][2] = 0;
@@ -393,16 +389,3 @@ TEST(PlayGroundTest, shouldCheckValidSolution) {
 
     ASSERT_TRUE(gen->checkSolution());
 }
-
-//TEST(PlayGroundTest, test) {
-//
-//    for(int i = 0; i < 100; i++) {
-//        cout << "\n" << endl;
-//        auto *gen = new PlayGround(4, -1);
-//        gen->generatePlayground();
-//        gen->fillPlayGround();
-//        gen->printPlayGrounds();
-//
-//    }
-//
-//}
