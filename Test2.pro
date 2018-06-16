@@ -4,12 +4,16 @@
 #
 #-------------------------------------------------
 
+INCLUDEPATH += C:/MinGW/include/boost_1_67_0/
+LIBS += "-LC:/MinGW/include/boost_1_67_0/libs/"
+
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Test2
 TEMPLATE = app
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -46,3 +50,5 @@ FORMS += \
     hidato4x4.ui \
     hidato5x5.ui \
     hidato6x6.ui \
+
+

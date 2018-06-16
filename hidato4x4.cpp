@@ -27,30 +27,36 @@ Hidato4x4::~Hidato4x4()
 }
 
 void Hidato4x4::checkSolution()
-{
-     ui->button_check->setDisabled(true);
+{   std::vector<std::vector<int>> playGroundMySolution;
+    playGroundMySolution = std::vector<std::vector<int>>(4, std::vector<int>(4));
+    ui->button_check->setDisabled(true);
+
     for(int i = 0; i < 4; i++){
         for(int j =0; j< 4; j++){
-            if(playground->getPlayGroundSolved()[i][j] == playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt()){
-                qInfo() << playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt();
-                qInfo() << "true";
-                playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
-                playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
-            }else{
-                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit4x4[i*4+j]->toPlainText() == "X"){
+            playGroundMySolution[i][j]=playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt();
+        }
+    }
+
+    playground->setPlayGroundPlayerSolution(playGroundMySolution);
+    for(int i = 0; i < 4; i++){
+        for(int j =0; j< 4; j++){
+            if(playground->checkSolution()){
+                if(playground->getPlayGroundUnsolved()[i][j]==0){
                     playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::green);
                     playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
-                }else{
-                    playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::red);
-                    playGroundQTextEdit4x4[i*4+j]->setPlainText(QString::number(playground->getPlayGroundSolved()[i][j]) + "/" + playGroundQTextEdit4x4[i*4+j]->toPlainText());
-                    qInfo() << playGroundQTextEdit4x4[i*4+j]->toPlainText().toInt();
-                    qInfo() << "false";
                 }
-
+            }
+            else{
+                if(playground->getPlayGroundUnsolved()[i][j]==0){
+                    playGroundQTextEdit4x4[i*4+j]->setTextColor(Qt::red);
+                    playGroundQTextEdit4x4[i*4+j]->setPlainText(playGroundQTextEdit4x4[i*4+j]->toPlainText());
+                }
             }
             playGroundQTextEdit4x4[i*4+j]->setAlignment(Qt::AlignCenter);
-        }
+            playGroundQTextEdit4x4[i*4+j]->setReadOnly(true);
 
+
+        }
     }
 }
 

@@ -25,29 +25,36 @@ Hidato5x5::~Hidato5x5()
 
 
 void Hidato5x5::checkSolution()
-{    ui->button_check->setDisabled(true);
-    for(int i = 0; i < 5; i++){
-        for(int j =0; j< 5; j++){
-            if(playground->getPlayGroundSolved()[i][j] == playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt()){
-                qInfo() << playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt();
-                qInfo() << "true";
-                playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::green);
-                playGroundQTextEdit5x5[i*5+j]->setPlainText(playGroundQTextEdit5x5[i*5+j]->toPlainText());
-            }else{
-                if (playground->getPlayGroundSolved()[i][j] == 0 && playGroundQTextEdit5x5[i*5+j]->toPlainText() == "X"){
-                    playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::green);
-                    playGroundQTextEdit5x5[i*5+j]->setPlainText(playGroundQTextEdit5x5[i*5+j]->toPlainText());
-                }else{
-                    playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::red);
-                    playGroundQTextEdit5x5[i*5+j]->setPlainText(QString::number(playground->getPlayGroundSolved()[i][j]) + "/" + playGroundQTextEdit5x5[i*5+j]->toPlainText());
-                    qInfo() << playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt();
-                    qInfo() << "false";
-                }
-            }
-            playGroundQTextEdit5x5[i*5+j]->setAlignment(Qt::AlignCenter);
+{     std::vector<std::vector<int>> playGroundMySolution;
+      playGroundMySolution = std::vector<std::vector<int>>(5, std::vector<int>(5));
+      ui->button_check->setDisabled(true);
 
-        }
-    }
+      for(int i = 0; i < 5; i++){
+          for(int j =0; j< 5; j++){
+              playGroundMySolution[i][j]=playGroundQTextEdit5x5[i*5+j]->toPlainText().toInt();
+          }
+      }
+
+      playground->setPlayGroundPlayerSolution(playGroundMySolution);
+      for(int i = 0; i < 5; i++){
+          for(int j =0; j< 5; j++){
+              if(playground->checkSolution()){
+                  if(playground->getPlayGroundUnsolved()[i][j]==0){
+                      playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::green);
+                      playGroundQTextEdit5x5[i*5+j]->setPlainText(playGroundQTextEdit5x5[i*5+j]->toPlainText());
+                  }
+              }
+              else{
+                  if(playground->getPlayGroundUnsolved()[i][j]==0){
+                      playGroundQTextEdit5x5[i*5+j]->setTextColor(Qt::red);
+                      playGroundQTextEdit5x5[i*5+j]->setPlainText(playGroundQTextEdit5x5[i*5+j]->toPlainText());
+                  }
+              }
+              playGroundQTextEdit5x5[i*5+j]->setAlignment(Qt::AlignCenter);
+              playGroundQTextEdit5x5[i*5+j]->setReadOnly(true);
+
+          }
+      }
 
 }
 
