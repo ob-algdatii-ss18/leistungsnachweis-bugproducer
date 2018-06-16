@@ -1,7 +1,3 @@
-//
-// Created by joe on 10.04.18.
-//
-
 #ifndef LEISTUNGSNACHWEIS_BUGPRODUCER_HIDATOGENERATOR_H
 #define LEISTUNGSNACHWEIS_BUGPRODUCER_HIDATOGENERATOR_H
 
@@ -19,8 +15,6 @@ public:
      */
     PlayGround(unsigned int fieldSize, int isRandom);
 
-    int runCounter;
-
     /**
      * Get the solved playground.
      * @return solved playground
@@ -32,6 +26,7 @@ public:
      * @param playGroundSolved solved playground
     */
     void setPlayGroundSolved(const std::vector<std::vector<int>> &playGroundSolved);
+
 
     /**
      * Calculates the neighbours for a field.
@@ -81,15 +76,33 @@ public:
      */
     const std::vector<std::vector<int>> &getPlayGroundUnsolved() const;
 
-    void printPlayGrounds();
+    /**
+     * Checks if the input from the player is correct.
+     * @return true if correct, false otherwise
+     */
+    bool checkSolution();
+
+    /**
+     * Used to set the densityCounter for testing purpose.
+     * @param densityCounter
+     */
+    void setDensityCounter(float densityCounter);
+
+    /**
+     * Setter for playGroundPlayerSolution.
+     * @param playGroundPlayerSolution
+     */
+    void setPlayGroundPlayerSolution(const std::vector<std::vector<int>> &playGroundPlayerSolution);
 
 private:
 
     std::vector<std::vector<int>> playGroundSolved;
     std::vector<std::vector<int>> playGroundUnsolved;
+    std::vector<std::vector<int>> playGroundPlayerSolution;
     std::vector<int> neighbours;
     std::vector<int> numberAddresses;
 
+    float densityCounter = 0;
     unsigned int fieldSize;
     int currentPosition;
     int isRandom;
@@ -147,6 +160,16 @@ private:
      * @param neighbours vector with the neighbours
      */
     void hasTopLeftNeighbour(std::vector<int> &neighbours, bool, int, std::vector<std::vector<int>>) const;
+
+    /**
+     * Checks if the two addresses can reach each other within a 8-neighbour field.
+     * @param addr1 first address
+     * @param addr2 second address
+     * @param pg the playGround that is used for the search
+     * @return true if they can reach each other, false otherwise
+     */
+    bool checkForSameNeighbours(int addr1, int addr2, std::vector<std::vector<int>> pg);
+
 
 };
 

@@ -3,18 +3,18 @@
 #include <iostream>
 #include <random>
 #include <ctime>
+#include <map>
+#include <boost/random.hpp>
 
 using namespace std;
-random_device rd;     // only used once to initialise (seed) engine // NOLINT
-mt19937 engine(rd());    // random-number engine used (Mersenne-Twister in this case) // NOLINT
-uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased // NOLINT
-int emptyCounter = 0;
+std::time_t now = std::time(0);
+boost::random::mt19937 gen{static_cast<std::uint32_t>(now)};
+boost::random::uniform_int_distribution<> dist{0, 99};
+
 
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
     this->fieldSize = fieldSize;
     this->isRandom = isRandom;
-    this->runCounter = 1;
-
 }
 
 void PlayGround::generatePlayground() {
@@ -26,7 +26,6 @@ void PlayGround::generatePlayground() {
         vector<int> d = playGroundSolved.at(i);
         fill(d.begin(), d.end(), 0);
     }
-
     setStartPoint();
 }
 
@@ -37,7 +36,7 @@ void PlayGround::setStartPoint() {
 
 
     srand((unsigned int) time(nullptr));
-    auto random_integer = uni(engine);
+    auto random_integer = dist(gen);
 
     if (isRandom == -1) {
         currentPosition = (random_integer % (fieldSize * fieldSize));
@@ -50,11 +49,9 @@ void PlayGround::setStartPoint() {
     calcNeighbours(currentPosition, false, playGroundSolved);
 }
 
-vector<int>
-PlayGround::calcNeighbours(int position, bool isPlayGroundFilled, std::vector<std::vector<int>> playGroundSolved) {
+vector<int> PlayGround::calcNeighbours(int position, bool isPlayGroundFilled, std::vector<std::vector<int>> playGroundSolved) {
 
     neighbours.clear();
-
 
     playGroundSolved.at(position / fieldSize).at(position % fieldSize);
 
@@ -130,7 +127,6 @@ PlayGround::calcNeighbours(int position, bool isPlayGroundFilled, std::vector<st
             hasBottomRightNeighbour(neighbours, isPlayGroundFilled, position, playGroundSolved);
         }
     }
-
     return neighbours;
 }
 
@@ -138,8 +134,7 @@ const vector<int> &PlayGround::getNeighbours() const {
     return neighbours;
 }
 
-void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                     std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position - fieldSize) / fieldSize).at((position - 1) % fieldSize) == 0) {
             neighbours.push_back(position - fieldSize - 1);
@@ -149,8 +144,7 @@ void PlayGround::hasTopLeftNeighbour(vector<int> &neighbours, bool isPlayGroundF
     }
 }
 
-void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                      std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position - fieldSize) / fieldSize).at((position + 1) % fieldSize) == 0) {
             neighbours.push_back(position - fieldSize + 1);
@@ -160,8 +154,7 @@ void PlayGround::hasTopRightNeighbour(vector<int> &neighbours, bool isPlayGround
     }
 }
 
-void PlayGround::hasTopNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                 std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasTopNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position - fieldSize) / fieldSize).at(position % fieldSize) == 0) {
             neighbours.push_back(position - fieldSize);
@@ -171,8 +164,7 @@ void PlayGround::hasTopNeighbour(vector<int> &neighbours, bool isPlayGroundFille
     }
 }
 
-void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                        std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position + fieldSize) / fieldSize).at((position - 1) % fieldSize) == 0) {
             neighbours.push_back(position + fieldSize - 1);
@@ -182,8 +174,7 @@ void PlayGround::hasBottomLeftNeighbour(vector<int> &neighbours, bool isPlayGrou
     }
 }
 
-void PlayGround::hasLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                  std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at(position / fieldSize).at((position - 1) % fieldSize) == 0) {
             neighbours.push_back(position - 1);
@@ -193,8 +184,7 @@ void PlayGround::hasLeftNeighbour(vector<int> &neighbours, bool isPlayGroundFill
     }
 }
 
-void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                         std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position + fieldSize) / fieldSize).at((position + 1) % fieldSize) ==
             0) {
@@ -205,8 +195,7 @@ void PlayGround::hasBottomRightNeighbour(vector<int> &neighbours, bool isPlayGro
     }
 }
 
-void PlayGround::hasBottomNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                    std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasBottomNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at((position + fieldSize) / fieldSize).at(position % fieldSize) == 0) {
             neighbours.push_back(position + fieldSize);
@@ -216,8 +205,7 @@ void PlayGround::hasBottomNeighbour(vector<int> &neighbours, bool isPlayGroundFi
     }
 }
 
-void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position,
-                                   std::vector<std::vector<int>> playGroundSolved) const {
+void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFilled, int position, std::vector<std::vector<int>> playGroundSolved) const {
     if (!isPlayGroundFilled) {
         if (playGroundSolved.at(position / fieldSize).at((position + 1) % fieldSize) == 0) {
             neighbours.push_back(position + 1);
@@ -229,11 +217,11 @@ void PlayGround::hasRightNeighbour(vector<int> &neighbours, bool isPlayGroundFil
 
 void PlayGround::fillPlayGround() {
     int nextPosition = 0;
-    float densityCounter = 0;
+    densityCounter = 0;
 
     while (!getNeighbours().empty()) {
-        int random_integer = uni(engine);
-        nextPosition = random_integer % (int)getNeighbours().size();
+        int random_integer = dist(gen);
+        nextPosition = random_integer % (int) getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
         if (playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
             playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] = fieldCounter++;
@@ -250,7 +238,6 @@ void PlayGround::fillPlayGround() {
                 playGroundSolved[i][j] = 0;
             }
         }
-        runCounter++;
         setStartPoint();
         fillPlayGround();
     } else {
@@ -258,63 +245,29 @@ void PlayGround::fillPlayGround() {
     }
 }
 
-
 void PlayGround::generateUnsolvedPlayground() {
-    emptyCounter = 0;
-
-
-    playGroundUnsolved = vector<vector<int >>(fieldSize, vector<int>(fieldSize));
-
+    playGroundUnsolved = vector<vector<int>>(fieldSize, vector<int>(fieldSize));
+    int deleteMarker = 10 - fieldSize;
 
     playGroundUnsolved[numberAddresses[0] / fieldSize][numberAddresses[0] % fieldSize] = 1;
-    playGroundUnsolved[numberAddresses[numberAddresses.size() - 1] / fieldSize][
-            numberAddresses[numberAddresses.size() - 1] % fieldSize] = static_cast<int>(numberAddresses.size());
+    playGroundUnsolved[numberAddresses[numberAddresses.size() - 1] / fieldSize][numberAddresses[numberAddresses.size() - 1] % fieldSize] = numberAddresses.size();
+
+    for (int i = 1; i * deleteMarker < numberAddresses.size() - 1; i++) {
+        int tempMarker = i * deleteMarker;
+        int tempPos = numberAddresses[tempMarker];
+        int temp = playGroundSolved[tempPos / fieldSize][tempPos % fieldSize];
+        playGroundUnsolved[tempPos / fieldSize][tempPos % fieldSize] = temp;
+    }
 
     for (int i = 0; i < fieldSize; i++) {
         for (int j = 0; j < fieldSize; j++) {
-            if ((i % 2 == 0) && (j % 2 == 0)) {
-                int tmp = playGroundSolved[i][j];
-                playGroundUnsolved[i][j] = tmp;
-            }
-            if ((i % 2 != 0) && (j % 2 != 0)) {
-                int tmp = playGroundSolved[i][j];
-                playGroundUnsolved[i][j] = tmp;
-            }
-        }
-    }
-
-
-    for (
-            int i = 0;
-            i < fieldSize;
-            i++) {
-        for (
-                int j = 0;
-                j < fieldSize;
-                j++) {
             if (playGroundSolved[i][j] == 0) {
                 playGroundUnsolved[i][j] = -1;
             }
         }
     }
 
-
-    for (
-            int i = 0;
-            i < fieldSize;
-            i++) {
-        for (
-                int j = 0;
-                j < fieldSize;
-                j++) {
-            if (playGroundUnsolved[i][j] == 0) {
-                emptyCounter++;
-            }
-        }
-    }
-
 }
-
 
 void PlayGround::setPlayGroundSolved(const vector<vector<int>> &playGroundSolved) {
     PlayGround::playGroundSolved = playGroundSolved;
@@ -336,9 +289,41 @@ const vector<vector<int>> &PlayGround::getPlayGroundUnsolved() const {
     return playGroundUnsolved;
 }
 
+bool PlayGround::checkSolution() {
 
+    map<int, int> numAddr;
 
+    for (int i = 0; i < fieldSize; i++) {
+        for (int j = 0; j < fieldSize; j++) {
+            if (playGroundPlayerSolution[i][j] != 0) {
+                numAddr[playGroundPlayerSolution[i][j]] = i * fieldSize + j; //Zahlenwert/Adresse
+            }
+        }
+    }
 
+    for (int i = 1; i < densityCounter - 1; i++) {
+        if (!checkForSameNeighbours(numAddr.find(i)->second, numAddr.find(i + 1)->second, playGroundPlayerSolution)) {
+            return false;
+        }
+    }
+    return true;
+}
 
+bool PlayGround::checkForSameNeighbours(int addr1, int addr2, vector<std::vector<int>> pg) {
 
+    vector<int> one = calcNeighbours(addr1, true, pg);
 
+    for (int elem : one) {
+        if (elem == addr2)
+            return true;
+    }
+    return false;
+}
+
+void PlayGround::setDensityCounter(float densityCounter) {
+    PlayGround::densityCounter = densityCounter;
+}
+
+void PlayGround::setPlayGroundPlayerSolution(const vector<vector<int>> &playGroundPlayerSolution) {
+    PlayGround::playGroundPlayerSolution = playGroundPlayerSolution;
+}

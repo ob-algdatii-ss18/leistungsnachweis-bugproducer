@@ -1,7 +1,3 @@
-//
-// Created by mark on 16.04.2018.
-//
-
 #include "testPlayGround.h"
 
 using namespace std;
@@ -312,15 +308,15 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
 
     filledPlaygroundDummy[0][0] = 1;
     filledPlaygroundDummy[0][1] = 0;
-    filledPlaygroundDummy[0][2] = 3;
+    filledPlaygroundDummy[0][2] = 0;
     filledPlaygroundDummy[0][3] = 0;
-    filledPlaygroundDummy[1][3] = 5;
+    filledPlaygroundDummy[1][3] = 0;
     filledPlaygroundDummy[1][2] = 0;
     filledPlaygroundDummy[1][1] = 7;
     filledPlaygroundDummy[1][0] = 0;
-    filledPlaygroundDummy[2][0] = 9;
+    filledPlaygroundDummy[2][0] = 0;
     filledPlaygroundDummy[2][1] = 0;
-    filledPlaygroundDummy[2][2] = 11;
+    filledPlaygroundDummy[2][2] = 0;
     filledPlaygroundDummy[2][3] = 0;
     filledPlaygroundDummy[3][3] = 13;
     filledPlaygroundDummy[3][2] = 0;
@@ -336,4 +332,60 @@ TEST(PlayGroundTest, shouldGenerateValidUnsolvedPlayGround) {
     vector<vector<int>> unsolvedPlayground = gen->getPlayGroundUnsolved();
 
     ASSERT_EQ(unsolvedPlayground, filledPlaygroundDummy);
+}
+
+
+TEST(PlayGroundTest, shouldCheckValidSolution) {
+    auto *gen = new PlayGround(4, 0);
+    vector<vector<int>> filledPlayground = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
+    vector<vector<int>> filledPlayground1 = vector<vector<int>>(FIELDSIZE, vector<int>(FIELDSIZE));
+
+    filledPlayground[0][0] = 1;
+    filledPlayground[0][1] = 2;
+    filledPlayground[0][2] = 3;
+    filledPlayground[0][3] = 4;
+    filledPlayground[1][3] = 5;
+    filledPlayground[1][2] = 6;
+    filledPlayground[1][1] = 7;
+    filledPlayground[1][0] = 8;
+    filledPlayground[2][0] = 9;
+    filledPlayground[2][1] = 10;
+    filledPlayground[2][2] = 11;
+    filledPlayground[2][3] = 12;
+    filledPlayground[3][3] = 13;
+    filledPlayground[3][2] = 14;
+    filledPlayground[3][1] = 15;
+    filledPlayground[3][0] = 0;
+
+    filledPlayground1[0][0] = 1;
+    filledPlayground1[0][1] = 2;
+    filledPlayground1[0][2] = 3;
+    filledPlayground1[0][3] = 4;
+    filledPlayground1[1][3] = 5;
+    filledPlayground1[1][2] = 6;
+    filledPlayground1[1][1] = 7;
+    filledPlayground1[1][0] = 8;
+    filledPlayground1[2][0] = 9;
+    filledPlayground1[2][1] = 10;
+    filledPlayground1[2][2] = 11;
+    filledPlayground1[2][3] = 12;
+    filledPlayground1[3][3] = 13;
+    filledPlayground1[3][2] = 14;
+    filledPlayground1[3][1] = 15;
+    filledPlayground1[3][0] = 0;
+
+
+
+    vector<int> numberAddresses {0,1,2,3,7,6,5,4,8,9,10,11,15,14,13};
+
+    gen->setPlayGroundSolved(filledPlayground);
+
+    gen->setDensityCounter(15);
+
+
+    gen->setPlayGroundPlayerSolution(filledPlayground1);
+
+    vector<vector<int>> unsolvedPlayground = gen->getPlayGroundUnsolved();
+
+    ASSERT_TRUE(gen->checkSolution());
 }
