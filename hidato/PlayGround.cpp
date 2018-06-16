@@ -4,12 +4,13 @@
 #include <random>
 #include <ctime>
 #include <map>
+#include <boost_1_67_0/boost/random.hpp>
 
 using namespace std;
-random_device rd;     // only used once to initialise (seed) engine // NOLINT
-mt19937 engine(rd());    // random-number engine used (Mersenne-Twister in this case) // NOLINT
-uniform_int_distribution<int> uni(1, 99); // guaranteed unbiased // NOLINT
-int emptyCounter = 0;
+std::time_t now = std::time(0);
+boost::random::mt19937 gen{static_cast<std::uint32_t>(now)};
+boost::random::uniform_int_distribution<> dist{0, 99};
+
 
 PlayGround::PlayGround(unsigned int fieldSize, int isRandom) {
     this->fieldSize = fieldSize;
@@ -38,7 +39,7 @@ void PlayGround::setStartPoint() {
 
 
     srand((unsigned int) time(nullptr));
-    auto random_integer = uni(engine);
+    auto random_integer = dist(gen);
 
     if (isRandom == -1) {
         currentPosition = (random_integer % (fieldSize * fieldSize));
@@ -233,7 +234,7 @@ void PlayGround::fillPlayGround() {
     densityCounter = 0;
 
     while (!getNeighbours().empty()) {
-        int random_integer = uni(engine);
+        int random_integer = dist(gen);
         nextPosition = random_integer % (int) getNeighbours().size();
         nextPosition = getNeighbours()[nextPosition];
         if (playGroundSolved[nextPosition / fieldSize][nextPosition % fieldSize] == 0) {
