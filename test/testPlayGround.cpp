@@ -394,15 +394,15 @@ TEST(PlayGroundTest, shouldCheckValidSolution) {
     ASSERT_TRUE(gen->checkSolution());
 }
 
-TEST(PlayGroundTest, test) {
-
-    for(int i = 0; i < 100; i++) {
-        cout << "\n" << endl;
-        auto *gen = new PlayGround(4, -1);
-        gen->generatePlayground();
-        gen->fillPlayGround();
-        gen->printPlayGrounds();
-
-    }
-
-}
+//TEST(PlayGroundTest, test) {
+//
+//    for(int i = 0; i < 100; i++) {
+//        cout << "\n" << endl;
+//        auto *gen = new PlayGround(4, -1);
+//        gen->generatePlayground();
+//        gen->fillPlayGround();
+//        gen->printPlayGrounds();
+//
+//    }
+//
+//}
