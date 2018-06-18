@@ -14,3 +14,9 @@ Das Ziel ist es, die leeren Felder sollen so auszufüllen, dass sich eine Kette 
 
 #### Doxygen
 [Dokumentation](https://ob-algdatii-ss18.github.io/leistungsnachweis-bugproducer/doxygen/html/)
+
+#### GUI
+Die grafische Oberfläche ist im "GUI"-Branch zu finden. Hierfür wird der QT-Creater benötigt.
+
+#### Externe Bibliothek
+[Boost](https://www.boost.org)
